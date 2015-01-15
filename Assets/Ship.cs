@@ -1,17 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 public class Ship : MonoBehaviour {
-
+	// some public variables that can be used to tune the Ship’s movement
+	public float turnSpeed;
+	public float thrustSpeed;
 	// Use this for initialization
 	void Start () {
-	
+		turnSpeed = .5f;
+		thrustSpeed = .01f;
 	}
-	
 	// Update is called once per frame
 	void Update () {
-		Vector3 updatedPosition = gameObject.transform.position;
-		updatedPosition.x += .001f;
-		gameObject.transform.position = updatedPosition;
+		if( Input.GetAxisRaw ("Vertical") > 0 )
+		{
+			gameObject.transform.Translate(0, 0, thrustSpeed);
+		}
+		if(Input.GetAxisRaw("Horizontal") > 0 )
+		{
+			gameObject.transform.Rotate(0, turnSpeed, 0);
+		}
+		else if( Input.GetAxisRaw("Horizontal") < 0 )
+		{
+			gameObject.transform.Rotate(0, -turnSpeed, 0);
+		}
 	}
 }
