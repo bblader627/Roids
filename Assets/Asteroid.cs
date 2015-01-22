@@ -5,6 +5,11 @@ public class Asteroid : MonoBehaviour {
 
 	// Use this for initialization
 	public int pointValue;
+	public GameObject deathExplosion;
+	public AudioClip deathKnell;
+
+	public GameObject mediumAsteroid;
+
 	void Start () {
 		pointValue = 10;
 	}
@@ -13,9 +18,7 @@ public class Asteroid : MonoBehaviour {
 	void Update () {
 	
 	}
-
-	public GameObject deathExplosion;
-	public AudioClip deathKnell;
+	
 	public void Die()
 	{
 		AudioSource.PlayClipAtPoint(deathKnell,
@@ -26,5 +29,8 @@ public class Asteroid : MonoBehaviour {
 		Global g = obj.GetComponent<Global>();
 		g.score += pointValue;
 		Destroy (gameObject);
+
+		//then have to make new objects... for hte medium asteroids. how? Instansiate?
+		Instantiate(mediumAsteroid, gameObject.transform.position, Quaternion.AngleAxis(-90, Vector3.right));
 	}
 }

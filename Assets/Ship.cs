@@ -4,6 +4,8 @@ public class Ship : MonoBehaviour {
 	public Vector3 forceVector;
 	public float rotationSpeed;
 	public float rotation;
+	public GameObject bullet; // the GameObject to spawn
+
 	// Use this for initialization
 	void Start () {
 		// Vector3 default initializes all components to 0.0f
@@ -39,7 +41,7 @@ through the FixedUpdate() method, not the Update() method
 	}
 
 	// Update is called once per frame
-	public GameObject bullet; // the GameObject to spawn
+
 	void Update () {
 		if(Input.GetButtonDown("Fire1"))
 		{

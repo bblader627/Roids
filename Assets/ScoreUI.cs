@@ -3,8 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class ScoreUI : MonoBehaviour {
-	Canvas test;
-	
 	Global globalObj;
 	Text scoreText;
 	// Use this for initialization
