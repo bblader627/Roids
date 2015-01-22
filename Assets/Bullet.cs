@@ -35,6 +35,11 @@ public class Bullet : MonoBehaviour {
 			// Destroy the Bullet which collided with the Asteroid
 			Destroy(gameObject);
 		}
+		else if(collider.CompareTag("MediumAsteroids")) {
+			MediumAsteroid roid = collider.gameObject.GetComponent<MediumAsteroid>();
+			roid.Die();
+			Destroy(gameObject);
+		}
 		else
 		{
 			// if we collided with something else, print to console
