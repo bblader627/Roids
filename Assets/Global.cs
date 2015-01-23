@@ -9,12 +9,25 @@ public class Global : MonoBehaviour {
 	public int numberSpawnedEachPeriod;
 	public Vector3 originInScreenCoords;
 	public int score;
+	public int level;
+	public int livesLeft;
+	public int asteroidsRemaining;
+	public int numberOfBullets;
+	public int maxBullets;
 	// Use this for initialization
 	void Start () {
 		score = 0;
 		timer = 0;
+		level = 1;
+		livesLeft = 3;
+		//spawn first wave of asteroids
+		//spawnAsteroids(3);
+		asteroidsRemaining = 3; //do the max? and only minus when there's medium hits
+		maxBullets = 4;
+		numberOfBullets = 0;
+
 		spawnPeriod = 5.0f;
-		numberSpawnedEachPeriod = 3;
+		numberSpawnedEachPeriod = 1;
 		/*
 So here's a design point to consider:
 - is the gameplay constrained by the screen size in any
@@ -30,9 +43,31 @@ camera's depth.
 */
 		originInScreenCoords =
 			Camera.main.WorldToScreenPoint(new Vector3(0,0,0));
+
+		spawnAsteroids(3);
+	}
+
+	void spawnAsteroids(int numberOfAsteroids) {
+		float width = Camera.main.GetScreenWidth();
+		float height = Camera.main.GetScreenHeight();
+		for( int i = 0; i < numberOfAsteroids; i++ )
+		{
+			float horizontalPos = Random.Range(0.0f, width);
+			float verticalPos = Random.Range(0.0f, height);
+			Instantiate(objToSpawn,
+			            Camera.main.ScreenToWorldPoint(
+				new Vector3(horizontalPos,
+			            verticalPos,originInScreenCoords.z)),
+			            Quaternion.identity );
+		}
 	}
 	// Update is called once per frame
 	void Update () {
+		//Check if all asteroids are destroyed
+
+		//UFO spawning should be here on the spawn period stuff
+
+		/*
 		timer += Time.deltaTime;
 		if( timer > spawnPeriod )
 		{
@@ -49,6 +84,9 @@ camera's depth.
 				            verticalPos,originInScreenCoords.z)),
 				            Quaternion.identity );
 			}
+			*/
+
+
 			/* if you want to verify that this method works, uncomment
 this code. What will happen when it runs is that one object will be spawned
 at each corner of the screen, regardless of the size of the screen. If you
@@ -72,6 +110,6 @@ Camera.main.ScreenToWorldPoint(botLeft), Quaternion.identity );
 Instantiate(objToSpawn,
 Camera.main.ScreenToWorldPoint(botRight), Quaternion.identity );
 */
-		}
+		//}
 	}
 }

@@ -6,8 +6,15 @@ public class Ship : MonoBehaviour {
 	public float rotation;
 	public GameObject bullet; // the GameObject to spawn
 
+	private Camera camera;
+	private Vector3 cameraBottomLeft;
+	private Vector3 cameraTopRight;
+	private Vector3 originInScreenCoords;
+
 	// Use this for initialization
 	void Start () {
+		camera = Camera.main;
+
 		// Vector3 default initializes all components to 0.0f
 		forceVector.x = 1.0f;
 		rotationSpeed = 2.0f;
@@ -43,25 +50,117 @@ through the FixedUpdate() method, not the Update() method
 	// Update is called once per frame
 
 	void Update () {
+		// Firing bullet
 		if(Input.GetButtonDown("Fire1"))
 		{
-			Debug.Log ("Fire! " + rotation);
-			/* we don’t want to spawn a Bullet inside our ship, so some
+			//check if you can fire first
+			GameObject globalObj = GameObject.Find("GlobalObject");
+			Global g = globalObj.GetComponent<Global>();
+			if(g.numberOfBullets >= g.maxBullets) {
+				//then you can't fire.
+				Debug.Log ("Can't fire!" + rotation);
+			}
+			else {
+				Debug.Log ("Fire! " + rotation);
+
+				//increase your count
+				g.numberOfBullets++;
+
+				/* we don’t want to spawn a Bullet inside our ship, so some
 				Simple trigonometry is done here to spawn the bullet
 				at the tip of where the ship is pointed.
-			*/
-			Vector3 spawnPos = gameObject.transform.position;
-			spawnPos.x += 1.5f * Mathf.Cos(rotation * Mathf.PI/180);
-			spawnPos.z -= 1.5f * Mathf.Sin(rotation * Mathf.PI/180);
-			// instantiate the Bullet
-			GameObject obj = Instantiate(bullet, spawnPos,
-			                             Quaternion.identity) as GameObject;
-			// get the Bullet Script Component of the new Bullet instance
-			Bullet b = obj.GetComponent<Bullet>();
-			// set the direction the Bullet will travel in
-			Quaternion rot = Quaternion.Euler(new
-			                                  Vector3(0,rotation,0));
-			b.heading = rot;
+				*/
+				Vector3 spawnPos = gameObject.transform.position;
+				spawnPos.x += 1.5f * Mathf.Cos(rotation * Mathf.PI/180);
+				spawnPos.z -= 1.5f * Mathf.Sin(rotation * Mathf.PI/180);
+				// instantiate the Bullet
+				GameObject bulletObj = Instantiate(bullet, spawnPos,
+				                             Quaternion.identity) as GameObject;
+				// get the Bullet Script Component of the new Bullet instance
+				Bullet b = bulletObj.GetComponent<Bullet>();
+				// set the direction the Bullet will travel in
+				Quaternion rot = Quaternion.Euler(new
+				                                  Vector3(0,rotation,0));
+				b.heading = rot;
+			}	
 		}
+	}
+
+	void LateUpdate() {
+		// Position updates when going outside screen bounds
+		CheckForWrapAround ();
+	}
+
+	void CheckForWrapAround () {
+		Vector3 position = transform.position;
+		originInScreenCoords =
+			Camera.main.WorldToScreenPoint(new Vector3(0,0,0));
+
+		cameraBottomLeft = Camera.main.ScreenToWorldPoint(new Vector3 (0, 0, originInScreenCoords.z));
+		cameraTopRight = Camera.main.ScreenToWorldPoint(new Vector3 (Camera.main.GetScreenWidth (), Camera.main.GetScreenHeight (), originInScreenCoords.z));
+
+		// Check the top wall
+		if (transform.position.z > cameraTopRight.z) {
+			position.z = cameraBottomLeft.z + 0.1f;
+			Debug.Log("Exited top of window.");
+		}
+		
+		// Check the bottom wall
+		if (transform.position.z < cameraBottomLeft.z) {
+			position.z = cameraTopRight.z - 0.1f;
+			Debug.Log("Exited bottom of window.");
+		}
+		
+		// Check the left wall
+		if(transform.position.x < cameraBottomLeft.x) {
+			position.x = cameraTopRight.x - 0.1f;
+			Debug.Log ("Exited left of window.");
+		}
+		
+		// Check the right wall
+		if (transform.position.x > cameraTopRight.x) {
+			position.x = cameraBottomLeft.x + 0.1f;
+			Debug.Log ("Exited right of window.");
+		}
+		
+		// Set the transformation's position
+		transform.position = position;
+	}
+
+	void OnCollisionEnter( Collision collision )
+	{
+		// the Collision contains a lot of info, but it’s the colliding
+		// object we’re most interested in.
+		Collider collider = collision.collider;
+		if( collider.CompareTag("Asteroids") )
+		{
+			Asteroid roid =
+				collider.gameObject.GetComponent< Asteroid >();
+			// let the other object handle its own death throes
+			roid.Die();
+			// Destroy the Bullet which collided with the Asteroid
+			Destroy(gameObject);
+
+			//then for now just load the scene, instead of losing your life
+			Application.LoadLevel("GameOverScene");
+		}
+		else if(collider.CompareTag("MediumAsteroids")) {
+			MediumAsteroid roid = collider.gameObject.GetComponent<MediumAsteroid>();
+			roid.Die();
+			Destroy(gameObject);
+
+			//then for now just load the scene, instead of losing your life
+			Application.LoadLevel("GameOverScene");
+		}
+		else
+		{
+			// if we collided with something else, print to console
+			// what the other thing was
+			Debug.Log ("Collided with " + collider.tag);
+		}
+	}
+
+	void OnBeceameInvisible() {
+		Debug.Log ("Invisibile! " + rotation);
 	}
 }

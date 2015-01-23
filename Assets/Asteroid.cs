@@ -9,7 +9,11 @@ public class Asteroid : MonoBehaviour {
 	public AudioClip deathKnell;
 	public Vector3 forceVector;
 
-
+	private Camera camera;
+	private Vector3 cameraBottomLeft;
+	private Vector3 cameraTopRight;
+	private Vector3 originInScreenCoords;
+	
 	public GameObject mediumAsteroid;
 
 	void Start () {
@@ -29,6 +33,47 @@ public class Asteroid : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void LateUpdate() {
+		// Position updates when going outside screen bounds
+		CheckForWrapAround ();
+	}
+	
+	void CheckForWrapAround () {
+		Vector3 position = transform.position;
+		originInScreenCoords =
+			Camera.main.WorldToScreenPoint(new Vector3(0,0,0));
+		
+		cameraBottomLeft = Camera.main.ScreenToWorldPoint(new Vector3 (0, 0, originInScreenCoords.z));
+		cameraTopRight = Camera.main.ScreenToWorldPoint(new Vector3 (Camera.main.GetScreenWidth (), Camera.main.GetScreenHeight (), originInScreenCoords.z));
+		
+		// Check the top wall
+		if (transform.position.z > cameraTopRight.z) {
+			position.z = cameraBottomLeft.z + 0.1f;
+			Debug.Log("Exited top of window.");
+		}
+		
+		// Check the bottom wall
+		if (transform.position.z < cameraBottomLeft.z) {
+			position.z = cameraTopRight.z - 0.1f;
+			Debug.Log("Exited bottom of window.");
+		}
+		
+		// Check the left wall
+		if(transform.position.x < cameraBottomLeft.x) {
+			position.x = cameraTopRight.x - 0.1f;
+			Debug.Log ("Exited left of window.");
+		}
+		
+		// Check the right wall
+		if (transform.position.x > cameraTopRight.x) {
+			position.x = cameraBottomLeft.x + 0.1f;
+			Debug.Log ("Exited right of window.");
+		}
+		
+		// Set the transformation's position
+		transform.position = position;
 	}
 	
 	public void Die()

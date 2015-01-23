@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 public class TitleUI : MonoBehaviour {
 	private GUIStyle buttonStyle;
 	// Use this for initialization

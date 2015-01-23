@@ -4,6 +4,12 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 	public Vector3 thrust;
 	public Quaternion heading;
+
+	private Camera camera;
+	private Vector3 cameraBottomLeft;
+	private Vector3 cameraTopRight;
+	private Vector3 originInScreenCoords;
+
 	// Use this for initialization
 	void Start () {
 		// travel straight in the X-axis
@@ -21,8 +27,51 @@ public class Bullet : MonoBehaviour {
 		//Physics engine handles movement, empty for now. }
 	}
 
+	void LateUpdate() {
+		// Position updates when going outside screen bounds
+		CheckForWrapAround ();
+	}
+	
+	void CheckForWrapAround () {
+		Vector3 position = transform.position;
+		originInScreenCoords =
+			Camera.main.WorldToScreenPoint(new Vector3(0,0,0));
+		
+		cameraBottomLeft = Camera.main.ScreenToWorldPoint(new Vector3 (0, 0, originInScreenCoords.z));
+		cameraTopRight = Camera.main.ScreenToWorldPoint(new Vector3 (Camera.main.GetScreenWidth (), Camera.main.GetScreenHeight (), originInScreenCoords.z));
+		
+		// Check the top wall
+		if (transform.position.z > cameraTopRight.z) {
+			position.z = cameraBottomLeft.z + 0.1f;
+			Debug.Log("Exited top of window.");
+		}
+		
+		// Check the bottom wall
+		if (transform.position.z < cameraBottomLeft.z) {
+			position.z = cameraTopRight.z - 0.1f;
+			Debug.Log("Exited bottom of window.");
+		}
+		
+		// Check the left wall
+		if(transform.position.x < cameraBottomLeft.x) {
+			position.x = cameraTopRight.x - 0.1f;
+			Debug.Log ("Exited left of window.");
+		}
+		
+		// Check the right wall
+		if (transform.position.x > cameraTopRight.x) {
+			position.x = cameraBottomLeft.x + 0.1f;
+			Debug.Log ("Exited right of window.");
+		}
+		
+		// Set the transformation's position
+		transform.position = position;
+	}
+
 	void OnCollisionEnter( Collision collision )
 	{
+		GameObject globalObj = GameObject.Find("GlobalObject");
+		Global g = globalObj.GetComponent<Global>();
 		// the Collision contains a lot of info, but it’s the colliding
 		// object we’re most interested in.
 		Collider collider = collision.collider;
@@ -33,11 +82,14 @@ public class Bullet : MonoBehaviour {
 			// let the other object handle its own death throes
 			roid.Die();
 			// Destroy the Bullet which collided with the Asteroid
+			g.numberOfBullets--;
 			Destroy(gameObject);
+
 		}
 		else if(collider.CompareTag("MediumAsteroids")) {
 			MediumAsteroid roid = collider.gameObject.GetComponent<MediumAsteroid>();
 			roid.Die();
+			g.numberOfBullets--;
 			Destroy(gameObject);
 		}
 		else
