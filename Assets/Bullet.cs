@@ -9,9 +9,13 @@ public class Bullet : MonoBehaviour {
 	private Vector3 cameraBottomLeft;
 	private Vector3 cameraTopRight;
 	private Vector3 originInScreenCoords;
+	private float timer;
+	private float deathPeriod;
 
 	// Use this for initialization
 	void Start () {
+		timer = 0.0f;
+		deathPeriod = 2.0f;
 		// travel straight in the X-axis
 		thrust.x = 400.0f;
 		// do not passively decelerate
@@ -24,7 +28,15 @@ public class Bullet : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () { 
+		GameObject globalObj = GameObject.Find("GlobalObject");
+		Global g = globalObj.GetComponent<Global>();
 		//Physics engine handles movement, empty for now. }
+		timer += Time.deltaTime;
+		if (timer > deathPeriod) {
+			timer = 0;
+			g.numberOfBullets--;
+			Destroy (gameObject);
+		}
 	}
 
 	void LateUpdate() {

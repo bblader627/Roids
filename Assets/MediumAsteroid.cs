@@ -78,6 +78,10 @@ public class MediumAsteroid : MonoBehaviour {
 		GameObject obj = GameObject.Find("GlobalObject");
 		Global g = obj.GetComponent<Global>();
 		g.score += pointValue;
+
+		//Mark yourself as destroyed
+		g.asteroidsRemaining--;
+
 		Destroy (gameObject);
 		
 		//then have to make new objects... for hte medium asteroids. how? Instansiate?

@@ -22,7 +22,8 @@ public class Global : MonoBehaviour {
 		livesLeft = 3;
 		//spawn first wave of asteroids
 		//spawnAsteroids(3);
-		asteroidsRemaining = 3; //do the max? and only minus when there's medium hits
+		//asteroidsRemaining = 3; //do the max? and only minus when there's medium hits
+		asteroidsRemaining = 9 * 3;
 		maxBullets = 4;
 		numberOfBullets = 0;
 
@@ -44,10 +45,10 @@ camera's depth.
 		originInScreenCoords =
 			Camera.main.WorldToScreenPoint(new Vector3(0,0,0));
 
-		spawnAsteroids(3);
+		SpawnAsteroids(3);
 	}
 
-	void spawnAsteroids(int numberOfAsteroids) {
+	void SpawnAsteroids(int numberOfAsteroids) {
 		float width = Camera.main.GetScreenWidth();
 		float height = Camera.main.GetScreenHeight();
 		for( int i = 0; i < numberOfAsteroids; i++ )
@@ -61,8 +62,33 @@ camera's depth.
 			            Quaternion.identity );
 		}
 	}
+
+	void StartLevel(int levelNumber) {
+		//spawn the correct number of asteroids and reset the position of the ship.
+		//then reset all the info
+		SpawnAsteroids (levelNumber + 2);
+		asteroidsRemaining = (levelNumber + 2) * 9;
+		livesLeft = 3;
+		level = levelNumber;
+		timer = 0;
+
+		//I gotta destroy all the bullets and reset the number of bullets to 0;
+	}
+
 	// Update is called once per frame
 	void Update () {
+		//Check if level is over.
+		if (asteroidsRemaining == 0) {
+			//Then start the next level
+			level++;
+			StartLevel(level);
+		}
+
+
+
+
+
+
 		//Check if all asteroids are destroyed
 
 		//UFO spawning should be here on the spawn period stuff
