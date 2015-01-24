@@ -514,7 +514,7 @@ GameObject:
   - 114: {fileID: 1955849740}
   - 114: {fileID: 1955849743}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
