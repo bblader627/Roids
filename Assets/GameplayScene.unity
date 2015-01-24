@@ -180,6 +180,7 @@ GameObject:
   - 54: {fileID: 385603747}
   - 64: {fileID: 385603746}
   - 114: {fileID: 385603745}
+  - 136: {fileID: 385603752}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -210,7 +211,7 @@ MeshCollider:
   m_GameObject: {fileID: 385603744}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -287,6 +288,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!136 &385603752
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 385603744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 9.91160011
+  m_Height: 20
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &564834145
 GameObject:
   m_ObjectHideFlags: 0
