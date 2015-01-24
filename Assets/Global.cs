@@ -19,7 +19,7 @@ public class Global : MonoBehaviour {
 		score = 0;
 		timer = 0;
 		level = 1;
-		livesLeft = 3;
+		livesLeft = 100;
 		//spawn first wave of asteroids
 		//spawnAsteroids(3);
 		//asteroidsRemaining = 3; //do the max? and only minus when there's medium hits
@@ -68,7 +68,7 @@ camera's depth.
 		//then reset all the info
 		SpawnAsteroids (levelNumber + 2);
 		asteroidsRemaining = (levelNumber + 2) * 9;
-		livesLeft = 3;
+		livesLeft = 100;
 		level = levelNumber;
 		timer = 0;
 
