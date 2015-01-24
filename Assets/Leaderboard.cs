@@ -7,6 +7,7 @@ public class Leaderboard : MonoBehaviour {
 
 	public ArrayList names;
 	public ArrayList scores;
+	public string lastPlayer;
 
 	// Use this for initialization
 	void Start () {
