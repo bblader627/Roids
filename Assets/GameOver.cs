@@ -9,19 +9,16 @@ public class GameOver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	}
-	
+	public string test = "Test.";
 	void OnGUI (){
 		GUILayout.BeginArea(new Rect(10, Screen.height / 2 + 100,
 		                             Screen.width -10, 200));
+		test = GUILayout.TextField (test, 20);
 		// Load the main scene
 		// The scene needs to be added into build setting to be loaded!
-		if (GUILayout.Button("Yes"))
+		if (GUILayout.Button("Ok"))
 		{
-			Application.LoadLevel("GameplayScene");
-		}
-		if (GUILayout.Button("No"))
-		{
-			Application.LoadLevel("TitleScreen");
+			Application.LoadLevel("LeaderboardScene");
 		}
 		GUILayout.EndArea();
 	}

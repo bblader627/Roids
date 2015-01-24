@@ -14,12 +14,14 @@ public class Global : MonoBehaviour {
 	public int asteroidsRemaining;
 	public int numberOfBullets;
 	public int maxBullets;
+
+
 	// Use this for initialization
 	void Start () {
 		score = 0;
 		timer = 0;
 		level = 1;
-		livesLeft = 100;
+		livesLeft = 3;
 		//spawn first wave of asteroids
 		//spawnAsteroids(3);
 		//asteroidsRemaining = 3; //do the max? and only minus when there's medium hits
@@ -29,6 +31,10 @@ public class Global : MonoBehaviour {
 
 		spawnPeriod = 5.0f;
 		numberSpawnedEachPeriod = 1;
+
+
+
+
 		/*
 So here's a design point to consider:
 - is the gameplay constrained by the screen size in any
@@ -68,7 +74,7 @@ camera's depth.
 		//then reset all the info
 		SpawnAsteroids (levelNumber + 2);
 		asteroidsRemaining = (levelNumber + 2) * 9;
-		livesLeft = 100;
+		livesLeft = 3;
 		level = levelNumber;
 		timer = 0;
 
@@ -80,6 +86,10 @@ camera's depth.
 		}
 		numberOfBullets = 0;
 	}
+
+	/*
+	 * Loads in the leaderboard from a csv file.
+	 */
 
 	// Update is called once per frame
 	void Update () {

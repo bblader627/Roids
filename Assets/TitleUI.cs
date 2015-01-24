@@ -19,7 +19,7 @@ public class TitleUI : MonoBehaviour {
 		{
 			Application.LoadLevel("GameplayScene");
 		}
-		if (GUILayout.Button("High score"))
+		if (GUILayout.Button("Leaderboard"))
 		{
 			Debug.Log ("You should implement a high score screen.");
 		}
