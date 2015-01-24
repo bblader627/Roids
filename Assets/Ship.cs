@@ -129,6 +129,9 @@ through the FixedUpdate() method, not the Update() method
 
 	void OnCollisionEnter( Collision collision )
 	{
+		GameObject globalObj = GameObject.Find("GlobalObject");
+		Global g = globalObj.GetComponent<Global>();
+
 		// the Collision contains a lot of info, but it’s the colliding
 		// object we’re most interested in.
 		Collider collider = collision.collider;
@@ -138,19 +141,39 @@ through the FixedUpdate() method, not the Update() method
 				collider.gameObject.GetComponent< Asteroid >();
 			// let the other object handle its own death throes
 			roid.Die();
-			// Destroy the Bullet which collided with the Asteroid
-			Destroy(gameObject);
+			// The ship is destroyed (add sound)
+			//Destroy(gameObject);
 
-			//then for now just load the scene, instead of losing your life
-			Application.LoadLevel("GameOverScene");
+			//Now check how many lives we have left
+			if(g.livesLeft == 0) {
+				//No lives, you die, game over.
+				Destroy(gameObject);
+				Application.LoadLevel("GameOverScene");
+			}
+			else {
+				//subtract a life, then respawn
+				//add explosion sound and effect
+				g.livesLeft--;
+				Respawn();
+			}
 		}
 		else if(collider.CompareTag("MediumAsteroids")) {
 			MediumAsteroid roid = collider.gameObject.GetComponent<MediumAsteroid>();
 			roid.Die();
-			Destroy(gameObject);
 
-			//then for now just load the scene, instead of losing your life
-			Application.LoadLevel("GameOverScene");
+
+			//Now check how many lives we have left
+			if(g.livesLeft == 0) {
+				//No lives, you die, game over.
+				Destroy(gameObject);
+				Application.LoadLevel("GameOverScene");
+			}
+			else {
+				//subtract a life, then respawn
+				//add explosion sound and effect
+				g.livesLeft--;
+				Respawn();
+			}
 		}
 		else
 		{
@@ -160,7 +183,12 @@ through the FixedUpdate() method, not the Update() method
 		}
 	}
 
-	void OnBeceameInvisible() {
-		Debug.Log ("Invisibile! " + rotation);
+	void Respawn() {
+		//Respawn is gonna have to have a way to keep the ship from dying right away
+		//add respawn noise
+
+
+		//I guess I would set position back to origin?
+		transform.position = new Vector3 (0.0f, 0.0f, 0.0f);
 	}
 }

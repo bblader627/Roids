@@ -226,7 +226,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!95 &385603748
 Animator:
@@ -613,6 +613,11 @@ MonoBehaviour:
   numberSpawnedEachPeriod: 0
   originInScreenCoords: {x: 0, y: 0, z: 0}
   score: 0
+  level: 0
+  livesLeft: 0
+  asteroidsRemaining: 0
+  numberOfBullets: 0
+  maxBullets: 0
 --- !u!4 &2050447162
 Transform:
   m_ObjectHideFlags: 0
