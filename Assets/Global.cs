@@ -73,6 +73,12 @@ camera's depth.
 		timer = 0;
 
 		//I gotta destroy all the bullets and reset the number of bullets to 0;
+		Object[] bullets;
+		bullets = GameObject.FindGameObjectsWithTag ("Bullet");
+		foreach (Object bullet in bullets) {
+			Destroy (bullet);
+		}
+		numberOfBullets = 0;
 	}
 
 	// Update is called once per frame
