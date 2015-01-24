@@ -14,6 +14,6 @@ public class LevelUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		levelText.text = globalObj.level.ToString ();
+		levelText.text = "Level: " + globalObj.level.ToString ();
 	}
 }
