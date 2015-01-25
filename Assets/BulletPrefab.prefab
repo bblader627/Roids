@@ -14,7 +14,7 @@ GameObject:
   - 54: {fileID: 5494352}
   - 114: {fileID: 11494352}
   - 136: {fileID: 13694594}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BulletPrefab
   m_TagString: Bullet
   m_Icon: {fileID: 0}

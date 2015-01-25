@@ -78,6 +78,7 @@ through the FixedUpdate() method, not the Update() method
 				// instantiate the Bullet
 				GameObject bulletObj = Instantiate(bullet, spawnPos,
 				                             Quaternion.identity) as GameObject;
+
 				// get the Bullet Script Component of the new Bullet instance
 				Bullet b = bulletObj.GetComponent<Bullet>();
 				// set the direction the Bullet will travel in

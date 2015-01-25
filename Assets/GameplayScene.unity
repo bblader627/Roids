@@ -181,7 +181,7 @@ GameObject:
   - 64: {fileID: 385603746}
   - 114: {fileID: 385603745}
   - 136: {fileID: 385603752}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,6 +604,10 @@ Prefab:
     - target: {fileID: 2300000, guid: f8be63edd520032488cf5b981351615d, type: 3}
       propertyPath: m_CastShadows
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f8be63edd520032488cf5b981351615d, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8be63edd520032488cf5b981351615d, type: 3}
