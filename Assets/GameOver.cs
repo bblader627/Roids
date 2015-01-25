@@ -3,8 +3,12 @@ using System.Collections;
 
 public class GameOver : MonoBehaviour {
 	private GUIStyle buttonStyle;
+	private GameObject globalObj;
+	private Global g;
 	// Use this for initialization
 	void Start () {
+		globalObj = GameObject.Find("GlobalObject");
+		g = globalObj.GetComponent<Global>();
 	}
 	// Update is called once per frame
 	void Update () {
@@ -17,17 +21,19 @@ public class GameOver : MonoBehaviour {
 		                             Screen.width -10, 200));
 		name = GUILayout.TextField (name, 20);
 
-		GameObject leaderboardObj = GameObject.Find("LeaderboardObject");
-		Leaderboard l = leaderboardObj.GetComponent<Leaderboard>();
+		g.name = name;
 
-		l.lastPlayer = name;
+		Debug.Log ("Player score: " + g.score);
 
-		Debug.Log ("Last Player: " + l.lastPlayer);
+
+
+		//Debug.Log ("Last Player: " + l.lastPlayer);
 
 		// Load the main scene
 		// The scene needs to be added into build setting to be loaded!
 		if (GUILayout.Button("Ok"))
 		{
+			g.UpdateLeaderboard ();
 			Application.LoadLevel("LeaderboardScene");
 		}
 		GUILayout.EndArea();

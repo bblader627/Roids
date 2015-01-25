@@ -721,6 +721,8 @@ MonoBehaviour:
   asteroidsRemaining: 0
   numberOfBullets: 0
   maxBullets: 0
+  scores: 
+  names: []
 --- !u!4 &2050447162
 Transform:
   m_ObjectHideFlags: 0

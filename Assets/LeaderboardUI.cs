@@ -5,9 +5,11 @@ public class LeaderboardUI : MonoBehaviour {
 	private GUIStyle buttonStyle;
 	// Use this for initialization
 	void Start () {
+
 	}
 	// Update is called once per frame
 	void Update () {
+
 	}
 	
 	void OnGUI (){

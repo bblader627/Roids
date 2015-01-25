@@ -7,7 +7,12 @@ public class Leaderboard : MonoBehaviour {
 
 	public ArrayList names;
 	public ArrayList scores;
-	public string lastPlayer;
+	public string name;
+	public int score;
+
+	void Awake() {
+		DontDestroyOnLoad (this);
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -47,7 +52,8 @@ public class Leaderboard : MonoBehaviour {
 		File.WriteAllText("leaderboard.csv", output.ToString());
 	}
 
-	public void UpdateLeaderboard(string name, int score) {
+	//public void UpdateLeaderboard(string name, int score) {
+	public void UpdateLeaderboard() {
 		//Given the current score, find if and where it belongs in the list, and add it
 		//First check if it is greater than the lowest score
 		if (score < (int)scores[9]) {

@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
+using System.Text;
+using System.Collections.Generic;
 
 public class Global : MonoBehaviour {
 
@@ -14,7 +17,14 @@ public class Global : MonoBehaviour {
 	public int asteroidsRemaining;
 	public int numberOfBullets;
 	public int maxBullets;
+	//public ArrayList names;
+	//public ArrayList scores;
+	public List<int> scores;
+	public List<string> names;
 
+	void Awake() {
+		DontDestroyOnLoad (this);
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -33,7 +43,9 @@ public class Global : MonoBehaviour {
 		numberSpawnedEachPeriod = 1;
 
 
-
+		names = new List<string>();
+		scores = new List<int>();
+		LoadLeaderboard ();
 
 		/*
 So here's a design point to consider:
@@ -153,5 +165,72 @@ Instantiate(objToSpawn,
 Camera.main.ScreenToWorldPoint(botRight), Quaternion.identity );
 */
 		//}
+	}
+
+	void LoadLeaderboard() {
+		StreamReader reader = new StreamReader (File.OpenRead (@"leaderboard.csv"));
+		
+		
+		while (!reader.EndOfStream) {
+			var line = reader.ReadLine ();
+			var values = line.Split(',');
+			
+			names.Add(values[0].ToString());
+			scores.Add(int.Parse(values[1]));
+		}
+		
+		//Debug.Log ("Highest score is " + names [0] + " " + scores [0]);
+	}
+	
+	void SaveLeaderboard() {
+		StringBuilder output = new StringBuilder ();
+		
+		for (int i = 0; i < 10; i++) {
+			string line = string.Format("{0},{1}{2}", names[i], scores[i], "\n");
+			output.Append(line);
+		}
+		
+		File.WriteAllText("leaderboard.csv", output.ToString());
+	}
+	
+	//public void UpdateLeaderboard(string name, int score) {
+	public void UpdateLeaderboard() {
+		//Given the current score, find if and where it belongs in the list, and add it
+		//First check if it is greater than the lowest score
+		if (score < scores[9]) {
+			//Less than the lowest score, so no way it gets added
+			return;
+		}
+		
+		//Otherwise, find where we put it
+		for (int i = 0; i < 10; i++) {
+			if(score >= scores[i]) {
+				//found where to put it
+				//so i have to save what was there, insert the new score, and then shift the rest down
+				int tempScore = scores[i];
+				string tempName = names[i];
+				scores[i] = score;
+				names[i] = name;
+				
+				//shift everything down
+				for(int j = i + 1; j < 10; j++) {
+					int tempScore2;
+					string tempName2;
+					
+					tempScore2 = scores[j];
+					scores[j] = tempScore;
+					tempScore = tempScore2;
+					
+					tempName2 = names[j];
+					names[j] = tempName;
+					tempName = tempName2;
+				}
+				
+				//cancel the loop
+				break;
+			}
+		}
+
+		SaveLeaderboard ();
 	}
 }
