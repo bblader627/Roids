@@ -204,6 +204,8 @@ MonoBehaviour:
   rotation: 0
   bullet: {fileID: 194352, guid: 4515b4a1b1a00fe4b81c7c5ed77db189, type: 2}
   fireNoise: {fileID: 8300000, guid: 68afba37b0add4662b322912a5e54259, type: 3}
+  deathExplosion: {fileID: 154976, guid: 3d1ded87ecc9ea942aaead83ac17de13, type: 2}
+  deathKnell: {fileID: 8300000, guid: 4a26d79a626f6dc4a9d1a32a435491ce, type: 3}
 --- !u!64 &385603746
 MeshCollider:
   m_ObjectHideFlags: 0

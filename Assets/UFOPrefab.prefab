@@ -11,7 +11,7 @@ GameObject:
   - 114: {fileID: 11450060}
   - 54: {fileID: 5495444}
   - 136: {fileID: 13606500}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: UFOPrefab
   m_TagString: UFO
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 4: {fileID: 431042}
   - 33: {fileID: 3331042}
   - 23: {fileID: 2331042}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AstraShuttleCargo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - 4: {fileID: 431044}
   - 33: {fileID: 3331044}
   - 23: {fileID: 2331044}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AstraShuttleEngines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - 4: {fileID: 431046}
   - 33: {fileID: 3331046}
   - 23: {fileID: 2331046}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AstraShuttleHull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireNoise: {fileID: 8300000, guid: 68afba37b0add4662b322912a5e54259, type: 3}
-  bullet: {fileID: 194352, guid: 4515b4a1b1a00fe4b81c7c5ed77db189, type: 2}
+  ufoBullet: {fileID: 196994, guid: 8111d2b7e03593144a487cb2d82ee8cd, type: 2}
   deathExplosion: {fileID: 154976, guid: 3d1ded87ecc9ea942aaead83ac17de13, type: 2}
   deathKnell: {fileID: 8300000, guid: 4a26d79a626f6dc4a9d1a32a435491ce, type: 3}
 --- !u!136 &13606500

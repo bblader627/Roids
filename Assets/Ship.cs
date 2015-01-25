@@ -7,6 +7,9 @@ public class Ship : MonoBehaviour {
 	public GameObject bullet; // the GameObject to spawn
 	public AudioClip fireNoise;
 
+	public GameObject deathExplosion;
+	public AudioClip deathKnell;
+
 	private Camera camera;
 	private Vector3 cameraBottomLeft;
 	private Vector3 cameraTopRight;
@@ -17,7 +20,7 @@ public class Ship : MonoBehaviour {
 		camera = Camera.main;
 
 		// Vector3 default initializes all components to 0.0f
-		forceVector.x = 1.0f;
+		forceVector.x = 2.0f;
 		rotationSpeed = 2.0f;
 	}
 	/* forced changes to rigid body physics parameters should be done
@@ -164,6 +167,46 @@ through the FixedUpdate() method, not the Update() method
 			MediumAsteroid roid = collider.gameObject.GetComponent<MediumAsteroid>();
 			roid.Die();
 
+
+			//Now check how many lives we have left
+			if(g.livesLeft == 0) {
+				//No lives, you die, game over.
+				Destroy(gameObject);
+				Application.LoadLevel("GameOverScene");
+			}
+			else {
+				//subtract a life, then respawn
+				//add explosion sound and effect
+				g.livesLeft--;
+				Respawn();
+			}
+		}
+		else if(collider.CompareTag("UFOBullet")) {
+			UFOBullet ufoBullet = collider.gameObject.GetComponent<UFOBullet>();
+			Destroy(ufoBullet);
+
+			AudioSource.PlayClipAtPoint(deathKnell,
+			                            gameObject.transform.position );
+			Instantiate(deathExplosion, gameObject.transform.position,
+			            Quaternion.AngleAxis(-90, Vector3.right) );
+
+
+			//Now check how many lives we have left
+			if(g.livesLeft == 0) {
+				//No lives, you die, game over.
+				Destroy(gameObject);
+				Application.LoadLevel("GameOverScene");
+			}
+			else {
+				//subtract a life, then respawn
+				//add explosion sound and effect
+				g.livesLeft--;
+				Respawn();
+			}
+		}
+		else if(collider.CompareTag("UFO")) {
+			UFO ufo = collider.gameObject.GetComponent<UFO>();
+			ufo.Die();
 
 			//Now check how many lives we have left
 			if(g.livesLeft == 0) {

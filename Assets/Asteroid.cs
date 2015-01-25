@@ -82,9 +82,7 @@ public class Asteroid : MonoBehaviour {
 		                            gameObject.transform.position );
 		Instantiate(deathExplosion, gameObject.transform.position,
 		            Quaternion.AngleAxis(-90, Vector3.right) );
-		GameObject obj = GameObject.Find("GlobalObject");
-		Global g = obj.GetComponent<Global>();
-		g.score += pointValue;
+
 		Destroy (gameObject);
 
 		//then have to make new objects... for hte medium asteroids. how? Instansiate?

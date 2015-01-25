@@ -7,7 +7,7 @@ public class UFO : MonoBehaviour {
 	private int pointValue;
 	private Vector3 forceVector;
 	public AudioClip fireNoise;
-	public GameObject bullet;
+	public GameObject ufoBullet;
 
 
 	public GameObject deathExplosion;
@@ -20,7 +20,7 @@ public class UFO : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		timer = 0;
-		firePeriod = 5.0f;
+		firePeriod = 2.0f;
 		pointValue = 200;
 
 		float rotation = Random.Range (0.0f, 360.0f);
@@ -50,11 +50,11 @@ public class UFO : MonoBehaviour {
 			spawnPos.x += 1.5f * Mathf.Cos(bulletRotation * Mathf.PI/180);
 			spawnPos.z -= 1.5f * Mathf.Sin(bulletRotation * Mathf.PI/180);
 			// instantiate the Bullet
-			GameObject bulletObj = Instantiate(bullet, spawnPos,
+			GameObject ufoBulletObj = Instantiate(ufoBullet, spawnPos,
 			                                   Quaternion.identity) as GameObject;
 			
 			// get the Bullet Script Component of the new Bullet instance
-			Bullet b = bulletObj.GetComponent<Bullet>();
+			UFOBullet b = ufoBulletObj.GetComponent<UFOBullet>();
 			// set the direction the Bullet will travel in
 			Quaternion rot = Quaternion.Euler(new
 			                                  Vector3(0,bulletRotation,0));

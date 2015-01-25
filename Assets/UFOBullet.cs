@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bullet : MonoBehaviour {
+public class UFOBullet : MonoBehaviour {
 	public Vector3 thrust;
 	public Quaternion heading;
-
+	
 	private Camera camera;
 	private Vector3 cameraBottomLeft;
 	private Vector3 cameraTopRight;
 	private Vector3 originInScreenCoords;
 	private float timer;
 	private float deathPeriod;
-
+	
 	// Use this for initialization
 	void Start () {
 		timer = 0.0f;
@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
-
+	
 	void LateUpdate() {
 		// Position updates when going outside screen bounds
 		CheckForWrapAround ();
@@ -79,7 +79,7 @@ public class Bullet : MonoBehaviour {
 		// Set the transformation's position
 		transform.position = position;
 	}
-
+	
 	void OnCollisionEnter( Collision collision )
 	{
 		GameObject globalObj = GameObject.Find("GlobalObject");
@@ -95,22 +95,14 @@ public class Bullet : MonoBehaviour {
 			roid.Die();
 			// Destroy the Bullet which collided with the Asteroid
 			g.numberOfBullets--;
-
-			g.score += 50;
-
 			Destroy(gameObject);
-
+			
 		}
 		else if(collider.CompareTag("MediumAsteroids")) {
 			MediumAsteroid roid = collider.gameObject.GetComponent<MediumAsteroid>();
 			roid.Die();
 			g.numberOfBullets--;
-			g.score += 100;
 			Destroy(gameObject);
-		}
-		else if(collider.CompareTag("UFO")) {
-			UFO ufo = collider.gameObject.GetComponent<UFO>();
-			ufo.Die();
 		}
 		else
 		{
