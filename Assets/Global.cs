@@ -85,7 +85,7 @@ camera's depth.
 	void StartLevel(int levelNumber) {
 		//spawn the correct number of asteroids and reset the position of the ship.
 		//then reset all the info
-		SpawnAsteroids (levelNumber + 2);
+
 		asteroidsRemaining = (levelNumber + 2) * 9;
 		livesLeft = 3;
 		level = levelNumber;
@@ -106,6 +106,11 @@ camera's depth.
 		foreach (Object ufo in ufos) {
 			Destroy (ufo);
 		}
+
+		Transform shipTransform = GameObject.FindGameObjectWithTag ("Ship").transform;
+		shipTransform.position = Vector3.zero;
+
+		SpawnAsteroids (levelNumber + 2);
 	}
 
 	/*
