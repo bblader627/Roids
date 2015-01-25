@@ -720,6 +720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objToSpawn: {fileID: 100000, guid: ca0fb80d2e54f314f9c0617fe83261f9, type: 2}
+  ufoToSpawn: {fileID: 131040, guid: f85c4ab0d4d35be43a073604a681362f, type: 2}
   timer: 0
   spawnPeriod: 0
   numberSpawnedEachPeriod: 0

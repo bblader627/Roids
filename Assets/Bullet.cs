@@ -104,6 +104,10 @@ public class Bullet : MonoBehaviour {
 			g.numberOfBullets--;
 			Destroy(gameObject);
 		}
+		else if(collider.CompareTag("UFO")) {
+			UFO ufo = collider.gameObject.GetComponent<UFO>();
+			ufo.Die();
+		}
 		else
 		{
 			// if we collided with something else, print to console

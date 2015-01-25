@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class Global : MonoBehaviour {
 
 	public GameObject objToSpawn;
+	public GameObject ufoToSpawn;
 	public float timer;
 	public float spawnPeriod;
 	public int numberSpawnedEachPeriod;
@@ -39,7 +40,7 @@ public class Global : MonoBehaviour {
 		maxBullets = 4;
 		numberOfBullets = 0;
 
-		spawnPeriod = 5.0f;
+		spawnPeriod = 10.0f;
 		numberSpawnedEachPeriod = 1;
 
 
@@ -89,6 +90,7 @@ camera's depth.
 		livesLeft = 3;
 		level = levelNumber;
 		timer = 0;
+		spawnPeriod = 10.0f;
 
 		//I gotta destroy all the bullets and reset the number of bullets to 0;
 		Object[] bullets;
@@ -97,6 +99,13 @@ camera's depth.
 			Destroy (bullet);
 		}
 		numberOfBullets = 0;
+
+		//gotta destroy all the UFOs
+		Object[] ufos;
+		ufos = GameObject.FindGameObjectsWithTag ("UFO");
+		foreach (Object ufo in ufos) {
+			Destroy (ufo);
+		}
 	}
 
 	/*
@@ -110,6 +119,18 @@ camera's depth.
 			//Then start the next level
 			level++;
 			StartLevel(level);
+		}
+
+		//spawn ufos
+		GameObject globalObj = GameObject.Find("GlobalObject");
+		Global g = globalObj.GetComponent<Global>();
+		//Physics engine handles movement, empty for now. }
+		timer += Time.deltaTime;
+		if (timer > spawnPeriod) {
+			timer = 0;
+			float horizontalPos = Random.Range(0.0f, Camera.main.GetScreenWidth());
+			float verticalPos = Random.Range(0.0f, Camera.main.GetScreenHeight());
+			Instantiate(ufoToSpawn, Camera.main.ScreenToWorldPoint(new Vector3(horizontalPos, verticalPos,originInScreenCoords.z)), Quaternion.identity );
 		}
 	}
 
