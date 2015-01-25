@@ -21,7 +21,7 @@ public class TitleUI : MonoBehaviour {
 		}
 		if (GUILayout.Button("Leaderboard"))
 		{
-			Debug.Log ("You should implement a high score screen.");
+			Application.LoadLevel("MenuLeaderboard");
 		}
 		if (GUILayout.Button("Exit"))
 		{

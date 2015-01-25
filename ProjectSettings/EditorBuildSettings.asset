@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/LeaderboardScene.unity
   - enabled: 1
     path: Assets/PlayAgainScene.unity
+  - enabled: 1
+    path: Assets/MenuLeaderboard.unity

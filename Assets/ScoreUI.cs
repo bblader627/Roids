@@ -9,7 +9,6 @@ public class ScoreUI : MonoBehaviour {
 	void Start () {
 		GameObject g = GameObject.Find ("GlobalObject");
 		globalObj = g.GetComponent< Global >();
-		//lastScore = 0;
 		scoreText = gameObject.GetComponent<Text>();
 	}
 
