@@ -111,60 +111,6 @@ camera's depth.
 			level++;
 			StartLevel(level);
 		}
-
-
-
-
-
-
-		//Check if all asteroids are destroyed
-
-		//UFO spawning should be here on the spawn period stuff
-
-		/*
-		timer += Time.deltaTime;
-		if( timer > spawnPeriod )
-		{
-			timer = 0;
-			float width = Camera.main.GetScreenWidth();
-			float height = Camera.main.GetScreenHeight();
-			for( int i = 0; i < numberSpawnedEachPeriod; i++ )
-			{
-				float horizontalPos = Random.Range(0.0f, width);
-				float verticalPos = Random.Range(0.0f, height);
-				Instantiate(objToSpawn,
-				            Camera.main.ScreenToWorldPoint(
-					new Vector3(horizontalPos,
-				            verticalPos,originInScreenCoords.z)),
-				            Quaternion.identity );
-			}
-			*/
-
-
-			/* if you want to verify that this method works, uncomment
-this code. What will happen when it runs is that one object will be spawned
-at each corner of the screen, regardless of the size of the screen. If you
-pause the Scene and inspect each object, you will see that each has a Ycoordinate
-value of 0.
-*/
-			/*
-			Vector3 botLeft = new Vector3(0,0,originInScreenCoords.z);
-			Vector3 botRight = new Vector3(width, 0,
-originInScreenCoords.z);
-Vector3 topLeft = new Vector3(0, height,
-originInScreenCoords.z);
-Vector3 topRight = new Vector3(width, height,
-originInScreenCoords.z);
-Instantiate(objToSpawn,
-Camera.main.ScreenToWorldPoint(topLeft), Quaternion.identity );
-Instantiate(objToSpawn,
-Camera.main.ScreenToWorldPoint(topRight), Quaternion.identity );
-Instantiate(objToSpawn,
-Camera.main.ScreenToWorldPoint(botLeft), Quaternion.identity );
-Instantiate(objToSpawn,
-Camera.main.ScreenToWorldPoint(botRight), Quaternion.identity );
-*/
-		//}
 	}
 
 	void LoadLeaderboard() {

@@ -5,6 +5,7 @@ public class Ship : MonoBehaviour {
 	public float rotationSpeed;
 	public float rotation;
 	public GameObject bullet; // the GameObject to spawn
+	public AudioClip fireNoise;
 
 	private Camera camera;
 	private Vector3 cameraBottomLeft;
@@ -62,7 +63,8 @@ through the FixedUpdate() method, not the Update() method
 			}
 			else {
 				Debug.Log ("Fire! " + rotation);
-
+				AudioSource.PlayClipAtPoint(fireNoise,
+				                            new Vector3(0, 20, 0));
 				//increase your count
 				g.numberOfBullets++;
 
@@ -186,7 +188,7 @@ through the FixedUpdate() method, not the Update() method
 	void Respawn() {
 		//Respawn is gonna have to have a way to keep the ship from dying right away
 		//add respawn noise
-
+		rigidbody.Sleep (); //This should reset the forces on the ship.
 
 		//I guess I would set position back to origin?
 		transform.position = new Vector3 (0.0f, 0.0f, 0.0f);
