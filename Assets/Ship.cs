@@ -6,6 +6,7 @@ public class Ship : MonoBehaviour {
 	public float rotation;
 	public GameObject bullet; // the GameObject to spawn
 	public AudioClip fireNoise;
+	public GameObject shield;
 
 	public GameObject deathExplosion;
 	public AudioClip deathKnell;
@@ -15,9 +16,14 @@ public class Ship : MonoBehaviour {
 	private Vector3 cameraTopRight;
 	private Vector3 originInScreenCoords;
 
+	private bool invincible; //for protecting during spawn and respawn
+
 	// Use this for initialization
 	void Start () {
 		camera = Camera.main;
+		//GameObject shield = GameObject.FindGameObjectWithTag ("Shield");
+		invincible = true;
+		Invoke ("DisableInvincible", 5);
 
 		// Vector3 default initializes all components to 0.0f
 		forceVector.x = 2.0f;
@@ -55,7 +61,8 @@ through the FixedUpdate() method, not the Update() method
 
 	void Update () {
 		// Firing bullet
-		if(Input.GetButtonDown("Fire1"))
+		// Do not let the player fire the bullet if they are invincible
+		if(Input.GetButtonDown("Fire1") && invincible == false)
 		{
 			//check if you can fire first
 			GameObject globalObj = GameObject.Find("GlobalObject");
@@ -135,6 +142,11 @@ through the FixedUpdate() method, not the Update() method
 
 	void OnCollisionEnter( Collision collision )
 	{
+
+		if (invincible == true) {
+			return;
+		}
+
 		GameObject globalObj = GameObject.Find("GlobalObject");
 		Global g = globalObj.GetComponent<Global>();
 
@@ -229,12 +241,24 @@ through the FixedUpdate() method, not the Update() method
 		}
 	}
 
+	void DisableInvincible() {
+		invincible = false;
+
+		shield.SetActive (false);
+	}
+
 	void Respawn() {
+		invincible = true;
+		shield.SetActive(true);
+
 		//Respawn is gonna have to have a way to keep the ship from dying right away
 		//add respawn noise
 		rigidbody.Sleep (); //This should reset the forces on the ship.
 
 		//I guess I would set position back to origin?
 		transform.position = new Vector3 (0.0f, 0.0f, 0.0f);
+
+		//invoke method to reenable collider in 3 seconds
+		Invoke ("DisableInvincible", 5);
 	}
 }

@@ -1,0 +1,96 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel waterCompute
+
+
+cbuffer perDraw : register(b0)
+{
+	float mDeltaTime;
+	float mWaveSpeed;
+	float mMU;
+}
+
+RWStructuredBuffer<float> np1PointBuffer : register(u0);
+RWStructuredBuffer<float> nPointBuffer : register(u1);
+RWStructuredBuffer<float> nm1PointBuffer : register(u2);
+StructuredBuffer<float> waterBuffer : register(t0);
+
+// This function assumes a unit point distance.
+[numthreads(16, 16, 1)]
+void waterCompute(uint3 dipatchID : SV_DispatchThreadID)
+{
+// normally 64
+	const uint indexX = dipatchID.x;
+	const uint indexZ = dipatchID.y;
+	uint indexXZ = (indexZ * 64) + indexX;
+	uint indexXZm1 = ((indexZ - 1) * 64) + indexX;
+	uint indexXZp1 = ((indexZ + 1) * 64) + indexX;
+	uint indexXm1Z = (indexZ * 64) + (indexX - 1);
+	uint indexXp1Z = (indexZ * 64) + (indexX + 1);
+
+	if(indexZ == 0 && indexX > 0)
+	{
+		indexXZm1 = ((64) * 64) + indexX;
+	}
+	else if(indexX == 0 && indexZ > 0)
+	{
+		indexXm1Z = (indexZ * 64) + 64;
+	}
+	else if(indexX == 0 && indexZ == 0)
+	{
+		indexXZm1 = ((64) * 64) + indexX;
+		indexXm1Z = (indexZ * 64) + 64;
+	}
+	else if(indexZ == 63 && indexX < 64)
+	{
+		indexXZp1 = (0 * 64) + indexX;
+	}
+	else if(indexX == 63 && indexZ < 63)
+	{
+		indexXp1Z = (indexZ * 64) + 0;
+	}
+	else if(indexX == 63 && indexZ == 63)
+	{
+		indexXZp1 = (0 * 64) + indexX;
+		indexXp1Z = (indexZ * 64) + 0;
+	}
+
+	/*if(mInit > 0)
+	{
+		const float pointHeight = -1.0f;//returnWaterHeight(indexX, indexZ);
+
+		np1PointBuffer[200] = pointHeight;
+		nPointBuffer[200] = pointHeight;
+		nm1PointBuffer[200] = pointHeight;
+
+		DeviceMemoryBarrierWithGroupSync();
+
+		//return;
+	}*/
+
+
+	nm1PointBuffer[indexXZ] = nPointBuffer[indexXZ];
+	nPointBuffer[indexXZ] = np1PointBuffer[indexXZ];
+	//DeviceMemoryBarrierWithGroupSync();
+
+	// 2Z(i,j)n - Z(i,j)n-1
+	float height  = (2 * nPointBuffer[indexXZ]) - nm1PointBuffer[indexXZ]; 
+
+	// D^2z/Dx^2
+	height += (((mWaveSpeed * mWaveSpeed) * (mDeltaTime * mDeltaTime)) * 
+			  (nPointBuffer[indexXm1Z] - 
+			  (2 * nPointBuffer[indexXZ]) +
+			  nPointBuffer[indexXp1Z]));
+
+	// D^2z/Dy^2
+	height +=  (((mWaveSpeed * mWaveSpeed) * (mDeltaTime * mDeltaTime)) * 
+			   (nPointBuffer[indexXZm1] - 
+			   (2 * nPointBuffer[indexXZ]) +
+			   nPointBuffer[indexXZp1]));
+
+	// t^2(u * Z(i,j)n - Z(i,j)n-1) / (2.0f * t)
+	height -= (mDeltaTime * mDeltaTime) * (mMU * (nPointBuffer[indexXZ] - nm1PointBuffer[indexXZ])) / (2.0f * mDeltaTime);
+
+	/*nm1PointBuffer[indexXZ] = nPointBuffer[indexXZ];
+	nPointBuffer[indexXZ] = np1PointBuffer[indexXZ];*/
+	np1PointBuffer[indexXZ] = height;
+}
