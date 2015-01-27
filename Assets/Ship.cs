@@ -11,7 +11,8 @@ public class Ship : MonoBehaviour {
 	public GameObject deathExplosion;
 	public AudioClip deathKnell;
 
-	private Camera camera;
+	private Camera mCamera;
+	public Camera fpCamera;
 	private Vector3 cameraBottomLeft;
 	private Vector3 cameraTopRight;
 	private Vector3 originInScreenCoords;
@@ -20,7 +21,9 @@ public class Ship : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		camera = Camera.main;
+		mCamera = Camera.main;
+		mCamera.enabled = true;
+		fpCamera.enabled = false;
 		//GameObject shield = GameObject.FindGameObjectWithTag ("Shield");
 		invincible = true;
 		Invoke ("DisableInvincible", 5);
@@ -96,6 +99,18 @@ through the FixedUpdate() method, not the Update() method
 				                                  Vector3(0,rotation,0));
 				b.heading = rot;
 			}	
+		}
+
+		//Switch to main overhead camera
+		if (Input.GetKeyDown ("1")) {
+			mCamera.enabled = true;
+			fpCamera.enabled = false;
+		}
+
+		//switch to first person mode
+		if(Input.GetKeyDown("2")) {
+			fpCamera.enabled = true;
+			mCamera.enabled = false;
 		}
 	}
 
