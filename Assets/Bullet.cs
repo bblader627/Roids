@@ -14,6 +14,8 @@ public class Bullet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		//Change color
+
 		timer = 0.0f;
 		deathPeriod = 2.0f;
 		// travel straight in the X-axis

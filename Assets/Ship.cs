@@ -177,6 +177,11 @@ through the FixedUpdate() method, not the Update() method
 			// The ship is destroyed (add sound)
 			//Destroy(gameObject);
 
+			AudioSource.PlayClipAtPoint(deathKnell,
+			                            gameObject.transform.position );
+			Instantiate(deathExplosion, gameObject.transform.position,
+			            Quaternion.AngleAxis(-90, Vector3.right) );
+
 			//Now check how many lives we have left
 			if(g.livesLeft == 0) {
 				//No lives, you die, game over.
@@ -194,6 +199,10 @@ through the FixedUpdate() method, not the Update() method
 			MediumAsteroid roid = collider.gameObject.GetComponent<MediumAsteroid>();
 			roid.Die();
 
+			AudioSource.PlayClipAtPoint(deathKnell,
+			                            gameObject.transform.position );
+			Instantiate(deathExplosion, gameObject.transform.position,
+			            Quaternion.AngleAxis(-90, Vector3.right) );
 
 			//Now check how many lives we have left
 			if(g.livesLeft == 0) {
@@ -234,6 +243,11 @@ through the FixedUpdate() method, not the Update() method
 		else if(collider.CompareTag("UFO")) {
 			UFO ufo = collider.gameObject.GetComponent<UFO>();
 			ufo.Die();
+
+			AudioSource.PlayClipAtPoint(deathKnell,
+			                            gameObject.transform.position );
+			Instantiate(deathExplosion, gameObject.transform.position,
+			            Quaternion.AngleAxis(-90, Vector3.right) );
 
 			//Now check how many lives we have left
 			if(g.livesLeft == 0) {
