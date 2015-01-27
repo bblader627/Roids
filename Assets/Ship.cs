@@ -24,6 +24,7 @@ public class Ship : MonoBehaviour {
 		mCamera = Camera.main;
 		mCamera.enabled = true;
 		fpCamera.enabled = false;
+
 		//GameObject shield = GameObject.FindGameObjectWithTag ("Shield");
 		invincible = true;
 		Invoke ("DisableInvincible", 5);

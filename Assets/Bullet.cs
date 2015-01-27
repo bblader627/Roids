@@ -48,8 +48,7 @@ public class Bullet : MonoBehaviour {
 	
 	void CheckForWrapAround () {
 		Vector3 position = transform.position;
-		originInScreenCoords =
-			Camera.main.WorldToScreenPoint(new Vector3(0,0,0));
+		originInScreenCoords = Camera.main.WorldToScreenPoint(new Vector3(0,0,0));
 		
 		cameraBottomLeft = Camera.main.ScreenToWorldPoint(new Vector3 (0, 0, originInScreenCoords.z));
 		cameraTopRight = Camera.main.ScreenToWorldPoint(new Vector3 (Camera.main.GetScreenWidth (), Camera.main.GetScreenHeight (), originInScreenCoords.z));
@@ -112,7 +111,9 @@ public class Bullet : MonoBehaviour {
 		}
 		else if(collider.CompareTag("UFO")) {
 			UFO ufo = collider.gameObject.GetComponent<UFO>();
+			g.numberOfBullets--;
 			ufo.Die();
+			Destroy(gameObject);
 		}
 		else
 		{
