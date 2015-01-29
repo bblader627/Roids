@@ -849,6 +849,7 @@ MonoBehaviour:
   pointValue: 100
   deathExplosion: {fileID: 154976, guid: 3d1ded87ecc9ea942aaead83ac17de13, type: 2}
   deathKnell: {fileID: 8300000, guid: 4a26d79a626f6dc4a9d1a32a435491ce, type: 3}
+  multiplierObject: {fileID: 172364, guid: 41d155566b13a1744869accc2611a6c9, type: 2}
 --- !u!114 &11434612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -863,6 +864,7 @@ MonoBehaviour:
   pointValue: 100
   deathExplosion: {fileID: 154976, guid: 3d1ded87ecc9ea942aaead83ac17de13, type: 2}
   deathKnell: {fileID: 8300000, guid: 4a26d79a626f6dc4a9d1a32a435491ce, type: 3}
+  multiplierObject: {fileID: 172364, guid: 41d155566b13a1744869accc2611a6c9, type: 2}
 --- !u!114 &11436202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -877,6 +879,7 @@ MonoBehaviour:
   pointValue: 100
   deathExplosion: {fileID: 154976, guid: 3d1ded87ecc9ea942aaead83ac17de13, type: 2}
   deathKnell: {fileID: 8300000, guid: 4a26d79a626f6dc4a9d1a32a435491ce, type: 3}
+  multiplierObject: {fileID: 172364, guid: 41d155566b13a1744869accc2611a6c9, type: 2}
 --- !u!114 &11447412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -891,6 +894,7 @@ MonoBehaviour:
   pointValue: 100
   deathExplosion: {fileID: 154976, guid: 3d1ded87ecc9ea942aaead83ac17de13, type: 2}
   deathKnell: {fileID: 8300000, guid: 4a26d79a626f6dc4a9d1a32a435491ce, type: 3}
+  multiplierObject: {fileID: 172364, guid: 41d155566b13a1744869accc2611a6c9, type: 2}
 --- !u!114 &11447912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -905,6 +909,7 @@ MonoBehaviour:
   pointValue: 100
   deathExplosion: {fileID: 154976, guid: 3d1ded87ecc9ea942aaead83ac17de13, type: 2}
   deathKnell: {fileID: 8300000, guid: 4a26d79a626f6dc4a9d1a32a435491ce, type: 3}
+  multiplierObject: {fileID: 172364, guid: 41d155566b13a1744869accc2611a6c9, type: 2}
 --- !u!114 &11455954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -919,6 +924,7 @@ MonoBehaviour:
   pointValue: 100
   deathExplosion: {fileID: 154976, guid: 3d1ded87ecc9ea942aaead83ac17de13, type: 2}
   deathKnell: {fileID: 8300000, guid: 4a26d79a626f6dc4a9d1a32a435491ce, type: 3}
+  multiplierObject: {fileID: 172364, guid: 41d155566b13a1744869accc2611a6c9, type: 2}
 --- !u!114 &11474676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -933,6 +939,7 @@ MonoBehaviour:
   pointValue: 100
   deathExplosion: {fileID: 154976, guid: 3d1ded87ecc9ea942aaead83ac17de13, type: 2}
   deathKnell: {fileID: 8300000, guid: 4a26d79a626f6dc4a9d1a32a435491ce, type: 3}
+  multiplierObject: {fileID: 172364, guid: 41d155566b13a1744869accc2611a6c9, type: 2}
 --- !u!114 &11476404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -947,6 +954,7 @@ MonoBehaviour:
   pointValue: 100
   deathExplosion: {fileID: 154976, guid: 3d1ded87ecc9ea942aaead83ac17de13, type: 2}
   deathKnell: {fileID: 8300000, guid: 4a26d79a626f6dc4a9d1a32a435491ce, type: 3}
+  multiplierObject: {fileID: 172364, guid: 41d155566b13a1744869accc2611a6c9, type: 2}
 --- !u!114 &11485630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -961,6 +969,7 @@ MonoBehaviour:
   pointValue: 100
   deathExplosion: {fileID: 154976, guid: 3d1ded87ecc9ea942aaead83ac17de13, type: 2}
   deathKnell: {fileID: 8300000, guid: 4a26d79a626f6dc4a9d1a32a435491ce, type: 3}
+  multiplierObject: {fileID: 172364, guid: 41d155566b13a1744869accc2611a6c9, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -263,6 +263,10 @@ through the FixedUpdate() method, not the Update() method
 				Respawn();
 			}
 		}
+		else if(collider.CompareTag("Multiplier")) {
+			Multiplier multiplier = collider.gameObject.GetComponent<Multiplier>();
+			multiplier.Die();
+		}
 		else
 		{
 			// if we collided with something else, print to console
@@ -280,6 +284,11 @@ through the FixedUpdate() method, not the Update() method
 	void Respawn() {
 		invincible = true;
 		shield.SetActive(true);
+
+		//reset multiplier count
+		GameObject globalObj = GameObject.Find("GlobalObject");
+		Global g = globalObj.GetComponent<Global>();
+		g.multiplier = 0;
 
 		//Respawn is gonna have to have a way to keep the ship from dying right away
 		//add respawn noise

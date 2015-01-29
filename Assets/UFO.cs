@@ -111,7 +111,7 @@ public class UFO : MonoBehaviour {
 		            Quaternion.AngleAxis(-90, Vector3.right) );
 		GameObject obj = GameObject.Find("GlobalObject");
 		Global g = obj.GetComponent<Global>();
-		g.score += pointValue;
+		g.score += (pointValue * g.multiplier);
 		Destroy (gameObject);
 	}
 }

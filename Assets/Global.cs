@@ -23,6 +23,8 @@ public class Global : MonoBehaviour {
 	public List<int> scores;
 	public List<string> names;
 
+	public int multiplier;
+
 	void Awake() {
 		DontDestroyOnLoad (this);
 	}
@@ -39,6 +41,8 @@ public class Global : MonoBehaviour {
 		asteroidsRemaining = 9 * 3;
 		maxBullets = 4;
 		numberOfBullets = 0;
+
+		multiplier = 0;
 
 		spawnPeriod = 10.0f;
 		numberSpawnedEachPeriod = 1;
@@ -91,6 +95,7 @@ camera's depth.
 		level = levelNumber;
 		timer = 0;
 		spawnPeriod = 10.0f;
+		multiplier = 0;
 
 		//I gotta destroy all the bullets and reset the number of bullets to 0;
 		Object[] bullets;

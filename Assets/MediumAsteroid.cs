@@ -13,6 +13,8 @@ public class MediumAsteroid : MonoBehaviour {
 	private Vector3 cameraBottomLeft;
 	private Vector3 cameraTopRight;
 	private Vector3 originInScreenCoords;
+
+	public GameObject multiplierObject;
 	
 	void Start () {
 		float rotation = Random.Range (0.0f, 360.0f);
@@ -80,6 +82,12 @@ public class MediumAsteroid : MonoBehaviour {
 
 		//Mark yourself as destroyed
 		g.asteroidsRemaining--;
+
+		/* Spawn 3 multipliers with very tiny velocities going in random directions */
+		for (int i = 0; i < 3; i++) {
+			Instantiate (multiplierObject, gameObject.transform.position, Quaternion.identity);
+		}
+
 
 		Destroy (gameObject);
 		

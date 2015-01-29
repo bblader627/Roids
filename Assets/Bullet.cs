@@ -97,7 +97,7 @@ public class Bullet : MonoBehaviour {
 			// Destroy the Bullet which collided with the Asteroid
 			g.numberOfBullets--;
 
-			g.score += 50;
+			g.score += (50 * g.multiplier);
 
 			Destroy(gameObject);
 
@@ -106,7 +106,7 @@ public class Bullet : MonoBehaviour {
 			MediumAsteroid roid = collider.gameObject.GetComponent<MediumAsteroid>();
 			roid.Die();
 			g.numberOfBullets--;
-			g.score += 100;
+			g.score += (100 * g.multiplier);
 			Destroy(gameObject);
 		}
 		else if(collider.CompareTag("UFO")) {
