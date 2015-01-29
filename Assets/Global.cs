@@ -95,6 +95,13 @@ camera's depth.
 		level = levelNumber;
 		timer = 0;
 		spawnPeriod = 10.0f;
+
+		// Must destroy all the mults in the scene and set multiplier to zero
+		Object[] multipliers;
+		multipliers = GameObject.FindGameObjectsWithTag ("Multiplier");
+		foreach (Object mult in multipliers) {
+			Destroy (mult);
+		}
 		multiplier = 0;
 
 		//I gotta destroy all the bullets and reset the number of bullets to 0;

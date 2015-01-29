@@ -118,8 +118,8 @@ public class UFO : MonoBehaviour {
 		for (int i = 0; i < 3; i++) {
 			float multiplierRotation = Random.Range (0.0f, 360.0f);
 			Vector3 spawnPos = gameObject.transform.position;
-			spawnPos.x += 1.5f * Mathf.Cos(multiplierRotation * Mathf.PI/180);
-			spawnPos.z -= 1.5f * Mathf.Sin(multiplierRotation * Mathf.PI/180);
+			spawnPos.x += 0.5f * Mathf.Cos(multiplierRotation * Mathf.PI/180);
+			spawnPos.z -= 0.5f * Mathf.Sin(multiplierRotation * Mathf.PI/180);
 			GameObject multiplierObj = Instantiate (multiplierObject, spawnPos, Quaternion.identity) as GameObject;
 
 			Multiplier m = multiplierObj.GetComponent<Multiplier>();

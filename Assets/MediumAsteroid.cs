@@ -83,10 +83,7 @@ public class MediumAsteroid : MonoBehaviour {
 		//Mark yourself as destroyed
 		g.asteroidsRemaining--;
 
-		/* Spawn 3 multipliers with very tiny velocities going in random directions */
-		for (int i = 0; i < 3; i++) {
-			Instantiate (multiplierObject, gameObject.transform.position, Quaternion.identity);
-		}
+		Instantiate (multiplierObject, gameObject.transform.position, Quaternion.identity);
 
 
 		Destroy (gameObject);
