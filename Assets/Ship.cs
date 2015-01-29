@@ -6,7 +6,6 @@ public class Ship : MonoBehaviour {
 	public float rotation;
 	public GameObject bullet; // the GameObject to spawn
 	public AudioClip fireNoise;
-	public GameObject shield;
 
 	public GameObject deathExplosion;
 	public AudioClip deathKnell;
@@ -18,6 +17,7 @@ public class Ship : MonoBehaviour {
 	private Vector3 originInScreenCoords;
 
 	private bool invincible; //for protecting during spawn and respawn
+	public GameObject shield;
 
 	// Use this for initialization
 	void Start () {
@@ -26,6 +26,7 @@ public class Ship : MonoBehaviour {
 		fpCamera.enabled = false;
 
 		//GameObject shield = GameObject.FindGameObjectWithTag ("Shield");
+
 		invincible = true;
 		Invoke ("DisableInvincible", 5);
 
@@ -283,6 +284,7 @@ through the FixedUpdate() method, not the Update() method
 	}
 
 	void DisableInvincible() {
+		shield = GameObject.FindGameObjectWithTag ("Shield");
 		invincible = false;
 
 		shield.SetActive (false);
