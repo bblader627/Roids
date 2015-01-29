@@ -295,7 +295,7 @@ through the FixedUpdate() method, not the Update() method
 		//reset multiplier count
 		GameObject globalObj = GameObject.Find("GlobalObject");
 		Global g = globalObj.GetComponent<Global>();
-		g.multiplier = 0;
+		g.multiplier = 1;
 
 		//Respawn is gonna have to have a way to keep the ship from dying right away
 		//add respawn noise

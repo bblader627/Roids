@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
-using System.IO;
-using System.Text;
 using System.Collections.Generic;
+using System.Text;
+using System.IO;
+
 
 public class Global : MonoBehaviour {
 
@@ -24,6 +26,8 @@ public class Global : MonoBehaviour {
 	public List<string> names;
 
 	public int multiplier;
+	public GameObject reportObj;
+	public Text reportTextObj, scoreText, livesText, multiplierText, levelText;
 
 	void Awake() {
 		DontDestroyOnLoad (this);
@@ -42,11 +46,14 @@ public class Global : MonoBehaviour {
 		maxBullets = 4;
 		numberOfBullets = 0;
 
-		multiplier = 0;
+		multiplier = 1;
 
 		spawnPeriod = 10.0f;
 		numberSpawnedEachPeriod = 1;
 
+		//hide the report and report text
+		reportObj.GetComponent<LevelReport> ().enabled = false;
+		reportTextObj.enabled = false;
 
 		names = new List<string>();
 		scores = new List<int>();
@@ -86,23 +93,34 @@ camera's depth.
 		}
 	}
 
-	void StartLevel(int levelNumber) {
+	public void StartLevel() {
+		//Hide the report again.
+		reportObj.GetComponent<LevelReport> ().enabled = false;
+		reportTextObj.enabled = false;
+
+		//enable hud text again
+		scoreText.enabled = true;
+		livesText.enabled = true;
+		levelText.enabled = true;
+		multiplierText.enabled = true;
+
 		//spawn the correct number of asteroids and reset the position of the ship.
 		//then reset all the info
-
-		asteroidsRemaining = (levelNumber + 2) * 9;
+		level++;
+		asteroidsRemaining = (level + 2) * 9;
 		livesLeft = 3;
-		level = levelNumber;
+		//level = levelNumber;
+
 		timer = 0;
 		spawnPeriod = 10.0f;
 
-		// Must destroy all the mults in the scene and set multiplier to zero
+		// Must destroy all the mults in the scene and set multiplier to 1
 		Object[] multipliers;
 		multipliers = GameObject.FindGameObjectsWithTag ("Multiplier");
 		foreach (Object mult in multipliers) {
 			Destroy (mult);
 		}
-		multiplier = 0;
+		multiplier = 1;
 
 		//I gotta destroy all the bullets and reset the number of bullets to 0;
 		Object[] bullets;
@@ -124,23 +142,42 @@ camera's depth.
 		Ship s = globalObj.GetComponent<Ship>();
 		s.EnableInvincible ();
 
+		GameObject.FindGameObjectWithTag ("Ship").rigidbody.Sleep ();//This should reset the forces on the ship.
 		Transform shipTransform = GameObject.FindGameObjectWithTag ("Ship").transform;
 		shipTransform.position = Vector3.zero;
 
-		SpawnAsteroids (levelNumber + 2);
+		SpawnAsteroids (level + 2);
 	}
 
-	/*
-	 * Loads in the leaderboard from a csv file.
-	 */
+	/* Activates the end of level report */ 
+	void EndOfLevelReport() {
+		asteroidsRemaining = -1; //temp bug fix for accumulating score on report screen
+
+		//disable the other text
+		scoreText.enabled = false;
+		livesText.enabled = false;
+		levelText.enabled = false;
+		multiplierText.enabled = false;
+
+		//pause game
+		Time.timeScale = 0;
+		//GameObject reportObj = GameObject.Find("EndOfLevelReport");
+		//LevelReport report = reportObj.GetComponent<LevelReport>();
+		reportObj.GetComponent<LevelReport> ().enabled = true;
+		reportTextObj.enabled = true;
+		reportTextObj.GetComponent<ReportText> ().DisplayReport ();
+
+		//the game will continue when the user clicks continue in LevelReport.cs
+	}
 
 	// Update is called once per frame
 	void Update () {
 		//Check if level is over.
 		if (asteroidsRemaining == 0) {
 			//Then start the next level
-			level++;
-			StartLevel(level);
+			//level++;
+			//StartLevel(level);
+			EndOfLevelReport();
 		}
 
 		//spawn ufos

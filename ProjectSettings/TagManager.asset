@@ -12,6 +12,7 @@ TagManager:
   - Ship
   - FixRotation
   - Multiplier
+  - ReportText
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
