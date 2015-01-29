@@ -277,6 +277,7 @@ through the FixedUpdate() method, not the Update() method
 	public void EnableInvincible() {
 		invincible = true;
 		shield.SetActive (true);
+		shield.renderer.enabled = true;
 
 		Invoke ("DisableInvincible", 5);
 	}

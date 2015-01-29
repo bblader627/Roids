@@ -42,6 +42,7 @@ public class Global : MonoBehaviour {
 		//spawn first wave of asteroids
 		//spawnAsteroids(3);
 		//asteroidsRemaining = 3; //do the max? and only minus when there's medium hits
+
 		asteroidsRemaining = 9 * 3;
 		maxBullets = 4;
 		numberOfBullets = 0;
@@ -122,13 +123,14 @@ camera's depth.
 		}
 		multiplier = 1;
 
-		//I gotta destroy all the bullets
-		// Do not set hte number of bullets to zero here. they take care of that themselves
+		//I gotta destroy all the bullets and num to zero
 		Object[] bullets;
 		bullets = GameObject.FindGameObjectsWithTag ("Bullet");
 		foreach (Object bullet in bullets) {
 			Destroy (bullet);
 		}
+		numberOfBullets = 0;
+
 
 		//gotta destroy all the UFOs
 		Object[] ufos;
@@ -137,8 +139,15 @@ camera's depth.
 			Destroy (ufo);
 		}
 
+		//Destroy all ufo bullets
+		Object[] ufoBullets;
+		ufoBullets = GameObject.FindGameObjectsWithTag ("UFOBullet");
+		foreach (Object ufoBullet in ufoBullets) {
+			Destroy (ufoBullet);
+		}
+
 		//Before transforming ship, give it the shield again.
-		GameObject globalObj = GameObject.Find("Ship");
+		GameObject globalObj = GameObject.FindGameObjectWithTag("Ship");
 		Ship s = globalObj.GetComponent<Ship>();
 		s.EnableInvincible ();
 

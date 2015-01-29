@@ -14,6 +14,7 @@ GameObject:
   - 54: {fileID: 5496994}
   - 114: {fileID: 11496994}
   - 136: {fileID: 13696994}
+  - 122: {fileID: 12206798}
   m_Layer: 10
   m_Name: UFOBulletPrefab
   m_TagString: UFOBullet
@@ -88,6 +89,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: {x: 0, y: 0, z: 0}
   heading: {x: 0, y: 0, z: 0, w: 0}
+--- !u!122 &12206798
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196994}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294670531
+  m_Size: .300000012
 --- !u!135 &13596994
 SphereCollider:
   m_ObjectHideFlags: 1
