@@ -56,25 +56,21 @@ public class Bullet : MonoBehaviour {
 		// Check the top wall
 		if (transform.position.z > cameraTopRight.z) {
 			position.z = cameraBottomLeft.z + 0.1f;
-			Debug.Log("Exited top of window.");
 		}
 		
 		// Check the bottom wall
 		if (transform.position.z < cameraBottomLeft.z) {
 			position.z = cameraTopRight.z - 0.1f;
-			Debug.Log("Exited bottom of window.");
 		}
 		
 		// Check the left wall
 		if(transform.position.x < cameraBottomLeft.x) {
 			position.x = cameraTopRight.x - 0.1f;
-			Debug.Log ("Exited left of window.");
 		}
 		
 		// Check the right wall
 		if (transform.position.x > cameraTopRight.x) {
 			position.x = cameraBottomLeft.x + 0.1f;
-			Debug.Log ("Exited right of window.");
 		}
 		
 		// Set the transformation's position

@@ -43,10 +43,6 @@ public class ReportText : MonoBehaviour {
 		report += "Bonus: " + multiplier + " * " + lives + " = " + (multiplier * lives) + "\n";
 		report += "Total: " + score + " + " + (multiplier * lives) + " = " + (score + (multiplier * lives));
 
-		//for(int i = 0; i < 10; i++) {
-			//report += (i + 1) + ") " + names[i]  + " - " + scores[i] + "\n\n";
-		//}
-		
 		levelReportText.text = report;
 
 		//update the score!

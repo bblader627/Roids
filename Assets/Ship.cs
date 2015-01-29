@@ -71,12 +71,15 @@ through the FixedUpdate() method, not the Update() method
 			//check if you can fire first
 			GameObject globalObj = GameObject.Find("GlobalObject");
 			Global g = globalObj.GetComponent<Global>();
+
+			Debug.Log("Current number of bullets: " + g.numberOfBullets);
+
 			if(g.numberOfBullets >= g.maxBullets) {
 				//then you can't fire.
 				Debug.Log ("Can't fire!" + rotation);
 			}
 			else {
-				Debug.Log ("Fire! " + rotation);
+				//Debug.Log ("Fire! " + rotation);
 				AudioSource.PlayClipAtPoint(fireNoise,
 				                            new Vector3(0, 20, 0));
 				//increase your count
@@ -131,25 +134,21 @@ through the FixedUpdate() method, not the Update() method
 		// Check the top wall
 		if (transform.position.z > cameraTopRight.z) {
 			position.z = cameraBottomLeft.z + 0.1f;
-			Debug.Log("Exited top of window.");
 		}
 		
 		// Check the bottom wall
 		if (transform.position.z < cameraBottomLeft.z) {
 			position.z = cameraTopRight.z - 0.1f;
-			Debug.Log("Exited bottom of window.");
 		}
 		
 		// Check the left wall
 		if(transform.position.x < cameraBottomLeft.x) {
 			position.x = cameraTopRight.x - 0.1f;
-			Debug.Log ("Exited left of window.");
 		}
 		
 		// Check the right wall
 		if (transform.position.x > cameraTopRight.x) {
 			position.x = cameraBottomLeft.x + 0.1f;
-			Debug.Log ("Exited right of window.");
 		}
 		
 		// Set the transformation's position
@@ -277,7 +276,7 @@ through the FixedUpdate() method, not the Update() method
 
 	public void EnableInvincible() {
 		invincible = true;
-		shield.SetActive(true);
+		shield.SetActive (true);
 
 		Invoke ("DisableInvincible", 5);
 	}

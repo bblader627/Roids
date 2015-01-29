@@ -122,13 +122,13 @@ camera's depth.
 		}
 		multiplier = 1;
 
-		//I gotta destroy all the bullets and reset the number of bullets to 0;
+		//I gotta destroy all the bullets
+		// Do not set hte number of bullets to zero here. they take care of that themselves
 		Object[] bullets;
 		bullets = GameObject.FindGameObjectsWithTag ("Bullet");
 		foreach (Object bullet in bullets) {
 			Destroy (bullet);
 		}
-		numberOfBullets = 0;
 
 		//gotta destroy all the UFOs
 		Object[] ufos;
@@ -180,16 +180,11 @@ camera's depth.
 			EndOfLevelReport();
 		}
 
-		//spawn ufos
-		GameObject globalObj = GameObject.Find("GlobalObject");
-		Global g = globalObj.GetComponent<Global>();
-		//Physics engine handles movement, empty for now. }
+		//Spawn UFOs at very top left corner of screen with a random direction
 		timer += Time.deltaTime;
 		if (timer > spawnPeriod) {
 			timer = 0;
-			float horizontalPos = Random.Range(0.0f, Camera.main.GetScreenWidth());
-			float verticalPos = Random.Range(0.0f, Camera.main.GetScreenHeight());
-			Instantiate(ufoToSpawn, Camera.main.ScreenToWorldPoint(new Vector3(horizontalPos, verticalPos,originInScreenCoords.z)), Quaternion.identity );
+			Instantiate(ufoToSpawn, Camera.main.ScreenToWorldPoint(new Vector3(0.0f, 0.0f, originInScreenCoords.z)), Quaternion.identity );
 		}
 	}
 
