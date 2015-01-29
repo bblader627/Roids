@@ -275,6 +275,13 @@ through the FixedUpdate() method, not the Update() method
 		}
 	}
 
+	public void EnableInvincible() {
+		invincible = true;
+		shield.SetActive(true);
+
+		Invoke ("DisableInvincible", 5);
+	}
+
 	void DisableInvincible() {
 		invincible = false;
 

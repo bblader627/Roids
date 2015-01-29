@@ -119,6 +119,11 @@ camera's depth.
 			Destroy (ufo);
 		}
 
+		//Before transforming ship, give it the shield again.
+		GameObject globalObj = GameObject.Find("Ship");
+		Ship s = globalObj.GetComponent<Ship>();
+		s.EnableInvincible ();
+
 		Transform shipTransform = GameObject.FindGameObjectWithTag ("Ship").transform;
 		shipTransform.position = Vector3.zero;
 
