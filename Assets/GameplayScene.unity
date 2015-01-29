@@ -141,6 +141,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 5444946490a1f774f88981334c598884, type: 2}
+      propertyPath: ShieldLayer.m_Bits
+      value: 4608
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5444946490a1f774f88981334c598884, type: 2}
   m_RootGameObject: {fileID: 1878667017}
@@ -929,7 +933,7 @@ MonoBehaviour:
   GlowEffectLength: 1
   ShieldLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 4608
   MaxDistorVal: .00999999978
   VelocityModifier: .100000001
   StabilityFactor: 5
