@@ -9,6 +9,7 @@ public class UFO : MonoBehaviour {
 	public AudioClip fireNoise;
 	public GameObject ufoBullet;
 
+	public GameObject multiplierObject;
 
 	public GameObject deathExplosion;
 	public AudioClip deathKnell;
@@ -112,6 +113,22 @@ public class UFO : MonoBehaviour {
 		GameObject obj = GameObject.Find("GlobalObject");
 		Global g = obj.GetComponent<Global>();
 		g.score += (pointValue * g.multiplier);
+
+		/* Spawn 3 multipliers with very tiny velocities going in random directions */
+		for (int i = 0; i < 3; i++) {
+			float multiplierRotation = Random.Range (0.0f, 360.0f);
+			Vector3 spawnPos = gameObject.transform.position;
+			spawnPos.x += 1.5f * Mathf.Cos(multiplierRotation * Mathf.PI/180);
+			spawnPos.z -= 1.5f * Mathf.Sin(multiplierRotation * Mathf.PI/180);
+			GameObject multiplierObj = Instantiate (multiplierObject, spawnPos, Quaternion.identity) as GameObject;
+
+			Multiplier m = multiplierObj.GetComponent<Multiplier>();
+			// set the direction the Bullet will travel in
+			Quaternion rot = Quaternion.Euler(new
+			                                  Vector3(0,multiplierRotation,0));
+			//m.heading = rot;
+		}
+
 		Destroy (gameObject);
 	}
 }
