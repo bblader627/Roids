@@ -14,6 +14,7 @@ GameObject:
   - 114: {fileID: 11462962}
   - 54: {fileID: 5416100}
   - 65: {fileID: 6532454}
+  - 122: {fileID: 12296756}
   m_Layer: 13
   m_Name: MultiplierPrefab
   m_TagString: Multiplier
@@ -111,6 +112,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: cc98b8ccdf9a248059887d064e7e5067, type: 3}
+--- !u!122 &12296756
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172364}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278255464
+  m_Size: .150000006
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
