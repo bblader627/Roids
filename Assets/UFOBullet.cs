@@ -103,4 +103,8 @@ public class UFOBullet : MonoBehaviour {
 			Debug.Log ("Collided with " + collider.tag);
 		}
 	}
+
+	public void Die() {
+		Destroy (gameObject);
+	}
 }

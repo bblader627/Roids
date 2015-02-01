@@ -6,10 +6,12 @@ public class Multiplier : MonoBehaviour {
 	public AudioClip pickupSound;
 	private float timer;
 	private float dyingWarning;
+	private bool blinkStarted;
 	// Use this for initialization
 	void Start () {
 		timer = 0.0f;
 		dyingWarning = 15.0f;
+		blinkStarted = false;
 	}
 	
 	// Update is called once per frame
@@ -18,7 +20,8 @@ public class Multiplier : MonoBehaviour {
 		if (timer > 20.0f) {
 			Destroy(gameObject);
 		}
-		else if (timer > dyingWarning) {
+		else if ((timer >= dyingWarning) && (blinkStarted == false)) {
+			blinkStarted = true;
 			StartCoroutine(Blink(5.0f));
 		}
 	}
@@ -45,7 +48,7 @@ public class Multiplier : MonoBehaviour {
 			yield return new WaitForSeconds(0.1f);
 			//renderer.enabled = true;
 			halo.GetType().GetProperty("enabled").SetValue(halo, true, null);
-			yield return new WaitForSeconds(1.0f);
+			yield return new WaitForSeconds(0.5f);
 		}
 	}
 }

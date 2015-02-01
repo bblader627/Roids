@@ -73,10 +73,6 @@ public class ShieldEffectMobile : MonoBehaviour
 	
 	private bool HasError = false;
 
-	void Awake() {
-		DontDestroyOnLoad (this);
-	}
-
 	// Use this for initialization
 	void Start () {
 

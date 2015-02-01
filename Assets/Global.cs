@@ -147,12 +147,12 @@ camera's depth.
 		}
 
 		//Before transforming ship, give it the shield again.
-		GameObject globalObj = GameObject.FindGameObjectWithTag("Ship");
-		Ship s = globalObj.GetComponent<Ship>();
-		s.EnableInvincible ();
+		GameObject shipObj = GameObject.FindGameObjectWithTag("Ship");
+		Ship s = shipObj.GetComponent<Ship>();
+		s.Respawn ();
 
-		GameObject.FindGameObjectWithTag ("Ship").rigidbody.Sleep ();//This should reset the forces on the ship.
-		Transform shipTransform = GameObject.FindGameObjectWithTag ("Ship").transform;
+		shipObj.rigidbody.Sleep ();//This should reset the forces on the ship.
+		Transform shipTransform = shipObj.transform;
 		shipTransform.position = Vector3.zero;
 
 		SpawnAsteroids (level + 2);

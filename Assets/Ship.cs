@@ -17,7 +17,8 @@ public class Ship : MonoBehaviour {
 	private Vector3 originInScreenCoords;
 
 	private bool invincible; //for protecting during spawn and respawn
-	public GameObject shield;
+	private GameObject shield;
+
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +26,9 @@ public class Ship : MonoBehaviour {
 		mCamera.enabled = true;
 		fpCamera.enabled = false;
 
-		//GameObject shield = GameObject.FindGameObjectWithTag ("Shield");
+		shield = GameObject.FindGameObjectWithTag ("Shield");
+		shield.GetComponent<MeshRenderer> ().enabled = true;
+		shield.GetComponent<MeshCollider> ().enabled = true;
 
 		invincible = true;
 		Invoke ("DisableInvincible", 5);
@@ -276,23 +279,41 @@ through the FixedUpdate() method, not the Update() method
 	}
 
 	public void EnableInvincible() {
+		//shield = GameObject.FindGameObjectWithTag ("Shield");
 		invincible = true;
-		shield.SetActive (true);
-		shield.renderer.enabled = true;
+		//shield.SetActive (true);
+		//shield.renderer.enabled = true;
+		shield.GetComponent<MeshRenderer> ().enabled = true;
+		shield.GetComponent<MeshCollider> ().enabled = true;
+
+		if (shield.activeSelf) {
+			Debug.Log("shield is active");
+		}
+		else {
+			Debug.Log("Shield is not active");
+		}
+			
 
 		Invoke ("DisableInvincible", 5);
 	}
 
 	void DisableInvincible() {
-		shield = GameObject.FindGameObjectWithTag ("Shield");
+		//shield = GameObject.FindGameObjectWithTag ("Shield");
 		invincible = false;
+		//shield.renderer.enabled = false;
+		shield.GetComponent<MeshRenderer> ().enabled = false;
+		shield.GetComponent<MeshCollider> ().enabled = false;
 
-		shield.SetActive (false);
+		//shield.SetActive (false);
 	}
 
-	void Respawn() {
+	public void Respawn() {
+		//shield = GameObject.FindGameObjectWithTag ("Shield");
 		invincible = true;
-		shield.SetActive(true);
+		//shield.SetActive(true);
+		//shield.renderer.enabled = true;
+		shield.GetComponent<MeshRenderer> ().enabled = true;
+		shield.GetComponent<MeshCollider> ().enabled = true;
 
 		//reset multiplier count
 		GameObject globalObj = GameObject.Find("GlobalObject");
