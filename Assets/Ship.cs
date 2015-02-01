@@ -279,19 +279,9 @@ through the FixedUpdate() method, not the Update() method
 	}
 
 	public void EnableInvincible() {
-		//shield = GameObject.FindGameObjectWithTag ("Shield");
 		invincible = true;
-		//shield.SetActive (true);
-		//shield.renderer.enabled = true;
 		shield.GetComponent<MeshRenderer> ().enabled = true;
 		shield.GetComponent<MeshCollider> ().enabled = true;
-
-		if (shield.activeSelf) {
-			Debug.Log("shield is active");
-		}
-		else {
-			Debug.Log("Shield is not active");
-		}
 			
 
 		Invoke ("DisableInvincible", 5);
