@@ -2,18 +2,20 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class ScoreUI : MonoBehaviour {
-	Global globalObj;
+public class ScoreUI : MonoBehaviour
+{
+	Global global;
 	Text scoreText;
-	// Use this for initialization
-	void Start () {
-		GameObject g = GameObject.Find ("GlobalObject");
-		globalObj = g.GetComponent< Global >();
-		scoreText = gameObject.GetComponent<Text>();
+
+	void Start ()
+	{
+		GameObject globalObject = GameObject.Find ("GlobalObject");
+		global = globalObject.GetComponent< Global > ();
+		scoreText = gameObject.GetComponent<Text> ();
 	}
 
-	// Update is called once per frame
-	void Update () {
-		scoreText.text = "Score: " + globalObj.score.ToString();
+	void Update ()
+	{
+		scoreText.text = "Score: " + global.score.ToString ();
 	}
 }

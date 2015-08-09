@@ -1,41 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameOver : MonoBehaviour {
+public class GameOver : MonoBehaviour
+{
 	private GUIStyle buttonStyle;
-	private GameObject globalObj;
-	private Global g;
-	// Use this for initialization
-	void Start () {
-		globalObj = GameObject.Find("GlobalObject");
-		g = globalObj.GetComponent<Global>();
-	}
-	// Update is called once per frame
-	void Update () {
-	}
+	private GameObject globalObject;
+	private Global global;
 
 	public string name = "Enter name...";
 
-	void OnGUI (){
-		GUILayout.BeginArea(new Rect(10, Screen.height / 2 + 100,
-		                             Screen.width -10, 200));
+	void Start ()
+	{
+		globalObject = GameObject.Find ("GlobalObject");
+		global = globalObject.GetComponent<Global> ();
+	}
+
+	void OnGUI ()
+	{
+		GUILayout.BeginArea (new Rect (10, Screen.height / 2 + 100,
+		                             Screen.width - 10, 200));
 		name = GUILayout.TextField (name, 20);
 
-		g.name = name;
+		global.name = name;
 
-		Debug.Log ("Player score: " + g.score);
+		Debug.Log ("Player score: " + global.score);
 
-
-
-		//Debug.Log ("Last Player: " + l.lastPlayer);
-
-		// Load the main scene
-		// The scene needs to be added into build setting to be loaded!
-		if (GUILayout.Button("Ok"))
-		{
-			g.UpdateLeaderboard ();
-			Application.LoadLevel("LeaderboardScene");
+		if (GUILayout.Button ("Ok")) {
+			global.UpdateLeaderboard ();
+			Application.LoadLevel ("LeaderboardScene");
 		}
-		GUILayout.EndArea();
+		GUILayout.EndArea ();
 	}
 }

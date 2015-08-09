@@ -7,11 +7,9 @@ public class Asteroid : MonoBehaviour
 	public GameObject deathExplosion;
 	public AudioClip deathKnell;
 	public Vector3 forceVector;
-
 	private Camera camera;
 	private Vector3 cameraBottomLeft;
 	private Vector3 cameraTopRight;
-
 	private Vector3 originInScreenCoords;
 	public GameObject mediumAsteroid;
 
@@ -66,10 +64,8 @@ public class Asteroid : MonoBehaviour
 	
 	public void Die ()
 	{
-		AudioSource.PlayClipAtPoint (deathKnell,
-		                            gameObject.transform.position);
-		Instantiate (deathExplosion, gameObject.transform.position,
-		            Quaternion.AngleAxis (-90, Vector3.right));
+		AudioSource.PlayClipAtPoint (deathKnell, gameObject.transform.position);
+		Instantiate (deathExplosion, gameObject.transform.position, Quaternion.AngleAxis (-90, Vector3.right));
 
 		Destroy (gameObject);
 

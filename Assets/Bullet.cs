@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bullet : MonoBehaviour {
+public class Bullet : MonoBehaviour
+{
 	public Vector3 thrust;
 	public Quaternion heading;
-
 	private Camera camera;
 	private Vector3 cameraBottomLeft;
 	private Vector3 cameraTopRight;
@@ -12,116 +12,104 @@ public class Bullet : MonoBehaviour {
 	private float timer;
 	private float deathPeriod;
 
-	// Use this for initialization
-	void Start () {
-		//Change color
-
+	void Start ()
+	{
 		timer = 0.0f;
 		deathPeriod = 2.0f;
-		// travel straight in the X-axis
+		// Travel straight in the X-axis
 		thrust.x = 400.0f;
-		// do not passively decelerate
-		gameObject.GetComponent<Rigidbody>().drag = 0;
-		// set the direction it will travel in
-		gameObject.GetComponent<Rigidbody>().MoveRotation(heading);
-		// apply thrust once, no need to apply it again since
+		// Do not passively decelerate
+		gameObject.GetComponent<Rigidbody> ().drag = 0;
+		// Set the direction it will travel in
+		gameObject.GetComponent<Rigidbody> ().MoveRotation (heading);
+		// Apply thrust once, no need to apply it again since
 		// it will not decelerate
-		gameObject.GetComponent<Rigidbody>().AddRelativeForce(thrust);
+		gameObject.GetComponent<Rigidbody> ().AddRelativeForce (thrust);
 	}
-	// Update is called once per frame
-	void Update () { 
-		GameObject globalObj = GameObject.Find("GlobalObject");
-		Global g = globalObj.GetComponent<Global>();
-		//Physics engine handles movement, empty for now. }
+
+	void Update ()
+	{ 
+		GameObject globalObject = GameObject.Find ("GlobalObject");
+		Global global = globalObject.GetComponent<Global> ();
+
 		timer += Time.deltaTime;
 		if (timer > deathPeriod) {
 			timer = 0;
-			g.numberOfBullets--;
+			global.numberOfBullets--;
 			Destroy (gameObject);
 		}
 	}
 
-	void LateUpdate() {
+	void LateUpdate ()
+	{
 		// Position updates when going outside screen bounds
 		CheckForWrapAround ();
 	}
 	
-	void CheckForWrapAround () {
+	void CheckForWrapAround ()
+	{
 		Vector3 position = transform.position;
-		originInScreenCoords = Camera.main.WorldToScreenPoint(new Vector3(0,0,0));
+		originInScreenCoords = Camera.main.WorldToScreenPoint (new Vector3 (0, 0, 0));
 		
-		cameraBottomLeft = Camera.main.ScreenToWorldPoint(new Vector3 (0, 0, originInScreenCoords.z));
-		cameraTopRight = Camera.main.ScreenToWorldPoint(new Vector3 (Screen.width, Screen.height, originInScreenCoords.z));
+		cameraBottomLeft = Camera.main.ScreenToWorldPoint (new Vector3 (0, 0, originInScreenCoords.z));
+		cameraTopRight = Camera.main.ScreenToWorldPoint (new Vector3 (Screen.width, Screen.height, originInScreenCoords.z));
 		
-		// Check the top wall
+		// Check the top bounds
 		if (transform.position.z > cameraTopRight.z) {
 			position.z = cameraBottomLeft.z + 0.1f;
 		}
 		
-		// Check the bottom wall
+		// Check the bottom bounds
 		if (transform.position.z < cameraBottomLeft.z) {
 			position.z = cameraTopRight.z - 0.1f;
 		}
 		
-		// Check the left wall
-		if(transform.position.x < cameraBottomLeft.x) {
+		// Check the left bounds
+		if (transform.position.x < cameraBottomLeft.x) {
 			position.x = cameraTopRight.x - 0.1f;
 		}
 		
-		// Check the right wall
+		// Check the right bounds
 		if (transform.position.x > cameraTopRight.x) {
 			position.x = cameraBottomLeft.x + 0.1f;
 		}
-		
-		// Set the transformation's position
+
 		transform.position = position;
 	}
 
-	void OnCollisionEnter( Collision collision )
+	void OnCollisionEnter (Collision collision)
 	{
-		GameObject globalObj = GameObject.Find("GlobalObject");
-		Global g = globalObj.GetComponent<Global>();
-		// the Collision contains a lot of info, but it’s the colliding
-		// object we’re most interested in.
+		GameObject globalObject = GameObject.Find ("GlobalObject");
+		Global global = globalObject.GetComponent<Global> ();
 		Collider collider = collision.collider;
-		if( collider.CompareTag("Asteroids") )
-		{
-			Asteroid roid =
-				collider.gameObject.GetComponent< Asteroid >();
-			// let the other object handle its own death throes
-			roid.Die();
-			// Destroy the Bullet which collided with the Asteroid
-			g.numberOfBullets--;
 
-			g.score += (50 * g.multiplier);
+		if (collider.CompareTag ("Asteroids")) {
+			Asteroid roid = collider.gameObject.GetComponent< Asteroid > ();
 
-			Destroy(gameObject);
+			roid.Die ();
+			global.numberOfBullets--;
+			global.score += (50 * global.multiplier);
+			Destroy (gameObject);
+		} else if (collider.CompareTag ("MediumAsteroids")) {
+			MediumAsteroid roid = collider.gameObject.GetComponent<MediumAsteroid> ();
 
-		}
-		else if(collider.CompareTag("MediumAsteroids")) {
-			MediumAsteroid roid = collider.gameObject.GetComponent<MediumAsteroid>();
-			roid.Die();
-			g.numberOfBullets--;
-			g.score += (100 * g.multiplier);
-			Destroy(gameObject);
-		}
-		else if(collider.CompareTag("UFO")) {
-			UFO ufo = collider.gameObject.GetComponent<UFO>();
-			g.numberOfBullets--;
-			ufo.Die();
-			Destroy(gameObject);
-		}
-		else if(collider.CompareTag("UFOBullet")) {
-			UFOBullet ufoBullet = collider.gameObject.GetComponent<UFOBullet>();
-			g.numberOfBullets--;
-			//Destroy(ufoBullet);
-			ufoBullet.Die();
-			Destroy(gameObject);
-		}
-		else
-		{
-			// if we collided with something else, print to console
-			// what the other thing was
+			roid.Die ();
+			global.numberOfBullets--;
+			global.score += (100 * global.multiplier);
+			Destroy (gameObject);
+		} else if (collider.CompareTag ("UFO")) {
+			UFO ufo = collider.gameObject.GetComponent<UFO> ();
+
+			global.numberOfBullets--;
+			ufo.Die ();
+			Destroy (gameObject);
+		} else if (collider.CompareTag ("UFOBullet")) {
+			UFOBullet ufoBullet = collider.gameObject.GetComponent<UFOBullet> ();
+
+			global.numberOfBullets--;
+			ufoBullet.Die ();
+			Destroy (gameObject);
+		} else {
 			Debug.Log ("Collided with " + collider.tag);
 		}
 	}

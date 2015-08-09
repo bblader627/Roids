@@ -5,36 +5,32 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-public class ReportText : MonoBehaviour {
+public class ReportText : MonoBehaviour
+{
 	private Text levelReportText;
 	private int score;
 	private int lives;
 	private int multiplier;
 	private int level;
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		score = 0;
 		lives = 0;
 		multiplier = 0;
 		level = 0;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
-	//Displays the report
-	public void DisplayReport() {
-		GameObject globalObj = GameObject.Find("GlobalObject");
-		Global g = globalObj.GetComponent<Global>();
-		score = g.score;
-		lives = g.livesLeft;
-		multiplier = g.multiplier;
-		level = g.level;
+	public void DisplayReport ()
+	{
+		GameObject globalObject = GameObject.Find ("GlobalObject");
+		Global global = globalObject.GetComponent<Global> ();
+		score = global.score;
+		lives = global.livesLeft;
+		multiplier = global.multiplier;
+		level = global.level;
 
-		levelReportText = gameObject.GetComponent<Text>();
+		levelReportText = gameObject.GetComponent<Text> ();
 		
 		string report = "Level " + level + "  Complete.\n\n\n";
 		report += "Score: " + score + "\n";
@@ -45,7 +41,6 @@ public class ReportText : MonoBehaviour {
 
 		levelReportText.text = report;
 
-		//update the score!
-		g.score = (score + (multiplier * lives));
+		global.score = (score + (multiplier * lives));
 	}
 }

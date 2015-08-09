@@ -46,4 +46,4 @@ Material:
       data:
         first:
           name: _RimColor
-        second: {r: 1, g: 0, b: 0, a: 1}
+        second: {r: .137254909, g: .137254909, b: .137254909, a: 1}
