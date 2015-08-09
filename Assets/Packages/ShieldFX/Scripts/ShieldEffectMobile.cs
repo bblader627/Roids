@@ -132,20 +132,10 @@ public class ShieldEffectMobile : MonoBehaviour
 		// Update shield vertex colours.
 		ShieldMesh.colors = colours;
 	}
-
-	void Update() {
-		Transform shipTransform = GameObject.FindGameObjectWithTag ("Ship").transform;
-		transform.parent = shipTransform;
-		transform.localPosition = Vector3.zero;
-		transform.localRotation = Quaternion.identity;
-	}
 	
 	// Update is called once per frame
 	void LateUpdate () 
 	{		
-
-
-
 		// If the object is not asleep, and there has been no errors.
 		if(Timer > 0.0f && !HasError)
 			// decrement the sleep timer.

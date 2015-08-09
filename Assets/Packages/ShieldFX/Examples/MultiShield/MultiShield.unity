@@ -379,11 +379,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveSpeed: 1
   ShieldStiffness: 1.25
-  ShieldEffectColour: {r: 1, g: 0, b: 0, a: 1}
+  ShieldEffectColour:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
   GlowEffectLength: 1
-  ShieldLayer:
-    serializedVersion: 2
-    m_Bits: 512
+  ShieldLayer: {}
   MaxDistorVal: 1.5
   VelocityModifier: .100000001
   StabilityFactor: 5
@@ -794,11 +796,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveSpeed: 1
   ShieldStiffness: 1.25
-  ShieldEffectColour: {r: 0, g: .83448267, b: 1, a: 1}
+  ShieldEffectColour:
+    r: 0
+    g: .83448267
+    b: 1
+    a: 1
   GlowEffectLength: 1
-  ShieldLayer:
-    serializedVersion: 2
-    m_Bits: 512
+  ShieldLayer: {}
   MaxDistorVal: 1.5
   VelocityModifier: .100000001
   StabilityFactor: 5
@@ -1333,11 +1337,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveSpeed: 1
   ShieldStiffness: 1.25
-  ShieldEffectColour: {r: 1, g: 0, b: 0, a: 1}
+  ShieldEffectColour:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
   GlowEffectLength: 1
-  ShieldLayer:
-    serializedVersion: 2
-    m_Bits: 512
+  ShieldLayer: {}
   MaxDistorVal: 1.5
   VelocityModifier: .100000001
   StabilityFactor: 5
@@ -1479,11 +1485,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveSpeed: 1
   ShieldStiffness: 1.25
-  ShieldEffectColour: {r: 0, g: 1, b: .0896551609, a: 1}
+  ShieldEffectColour:
+    r: 0
+    g: 1
+    b: .0896551609
+    a: 1
   GlowEffectLength: 1
-  ShieldLayer:
-    serializedVersion: 2
-    m_Bits: 512
+  ShieldLayer: {}
   MaxDistorVal: 1.5
   VelocityModifier: .100000001
   StabilityFactor: 5
@@ -1613,11 +1621,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveSpeed: 1
   ShieldStiffness: 1.25
-  ShieldEffectColour: {r: 0, g: 1, b: .0896551609, a: 1}
+  ShieldEffectColour:
+    r: 0
+    g: 1
+    b: .0896551609
+    a: 1
   GlowEffectLength: 1
-  ShieldLayer:
-    serializedVersion: 2
-    m_Bits: 512
+  ShieldLayer: {}
   MaxDistorVal: 1.5
   VelocityModifier: .100000001
   StabilityFactor: 5
@@ -1773,11 +1783,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveSpeed: 1
   ShieldStiffness: 1.25
-  ShieldEffectColour: {r: .944827557, g: 1, b: 0, a: 1}
+  ShieldEffectColour:
+    r: .944827557
+    g: 1
+    b: 0
+    a: 1
   GlowEffectLength: 1
-  ShieldLayer:
-    serializedVersion: 2
-    m_Bits: 512
+  ShieldLayer: {}
   MaxDistorVal: 1.5
   VelocityModifier: .100000001
   StabilityFactor: 5
@@ -2062,11 +2074,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveSpeed: 1
   ShieldStiffness: 1.25
-  ShieldEffectColour: {r: .944827557, g: 1, b: 0, a: 1}
+  ShieldEffectColour:
+    r: .944827557
+    g: 1
+    b: 0
+    a: 1
   GlowEffectLength: 1
-  ShieldLayer:
-    serializedVersion: 2
-    m_Bits: 512
+  ShieldLayer: {}
   MaxDistorVal: 1.5
   VelocityModifier: .100000001
   StabilityFactor: 5
@@ -2208,11 +2222,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveSpeed: 1
   ShieldStiffness: 1.25
-  ShieldEffectColour: {r: 0, g: .398833603, b: .477941155, a: 1}
+  ShieldEffectColour:
+    r: 0
+    g: .398833603
+    b: .477941155
+    a: 1
   GlowEffectLength: 1
-  ShieldLayer:
-    serializedVersion: 2
-    m_Bits: 512
+  ShieldLayer: {}
   MaxDistorVal: 1.5
   VelocityModifier: .100000001
   StabilityFactor: 5

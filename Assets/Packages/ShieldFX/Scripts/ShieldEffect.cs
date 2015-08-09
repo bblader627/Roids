@@ -144,14 +144,6 @@ public class ShieldEffect : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		//Keep the shield parented to the ship
-		
-		Transform shipTransform = GameObject.FindGameObjectWithTag ("Ship").transform;
-		transform.parent = shipTransform;
-		transform.localPosition = Vector3.zero;
-		transform.localRotation = Quaternion.identity;
-
-
 		// If the object is not asleep, and there has been no errors.
 		if(Timer > 0.0f && !HasError)
 			// decrement the sleep timer.

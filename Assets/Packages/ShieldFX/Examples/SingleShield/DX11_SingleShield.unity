@@ -206,11 +206,13 @@ MonoBehaviour:
   ShieldComputeEffect: {fileID: 7200000, guid: ebd3f1b7e9a7d1846b0ebd741e8b3e72, type: 3}
   WaveSpeed: 1
   ShieldStiffness: .5
-  ShieldEffectColour: {r: 1, g: 1, b: 1, a: 1}
+  ShieldEffectColour:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
   GlowEffectLength: 1
-  ShieldLayer:
-    serializedVersion: 2
-    m_Bits: 512
+  ShieldLayer: {}
   MaxDistorVal: .00999999978
   VelocityModifier: .5
   StabilityFactor: 5
