@@ -80,8 +80,8 @@ camera's depth.
 	}
 
 	void SpawnAsteroids(int numberOfAsteroids) {
-		float width = Camera.main.GetScreenWidth();
-		float height = Camera.main.GetScreenHeight();
+		float width = Screen.width;
+		float height = Screen.height;
 		for( int i = 0; i < numberOfAsteroids; i++ )
 		{
 			float horizontalPos = Random.Range(0.0f, width);
@@ -151,7 +151,7 @@ camera's depth.
 		Ship s = shipObj.GetComponent<Ship>();
 		s.Respawn ();
 
-		shipObj.rigidbody.Sleep ();//This should reset the forces on the ship.
+		shipObj.GetComponent<Rigidbody>().Sleep ();//This should reset the forces on the ship.
 		Transform shipTransform = shipObj.transform;
 		shipTransform.position = Vector3.zero;
 

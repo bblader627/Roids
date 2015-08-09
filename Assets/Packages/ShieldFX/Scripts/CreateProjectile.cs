@@ -22,7 +22,7 @@ public class CreateProjectile : MonoBehaviour {
 			Ray cRay = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0.0f));
 			
 			GameObject inst = Instantiate(Projectile, cRay.origin, transform.rotation) as GameObject;
-			inst.rigidbody.AddForce(cRay.direction * ProjSpeed, ForceMode.VelocityChange);
+			inst.GetComponent<Rigidbody>().AddForce(cRay.direction * ProjSpeed, ForceMode.VelocityChange);
 		}
 	}
 }

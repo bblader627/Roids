@@ -45,14 +45,14 @@ through the FixedUpdate() method, not the Update() method
 		// force thruster
 		if( Input.GetAxisRaw("Vertical") > 0 )
 		{
-			gameObject.rigidbody.AddRelativeForce(forceVector);
+			gameObject.GetComponent<Rigidbody>().AddRelativeForce(forceVector);
 		}
 		if( Input.GetAxisRaw("Horizontal") > 0 )
 		{
 			rotation += rotationSpeed;
 			Quaternion rot = Quaternion.Euler(new
 			                                  Vector3(0,rotation,0));
-			gameObject.rigidbody.MoveRotation(rot);
+			gameObject.GetComponent<Rigidbody>().MoveRotation(rot);
 			//gameObject.transform.Rotate(0, 2.0f, 0.0f );
 		}
 		else if( Input.GetAxisRaw("Horizontal") < 0 )
@@ -60,7 +60,7 @@ through the FixedUpdate() method, not the Update() method
 			rotation -= rotationSpeed;
 			Quaternion rot = Quaternion.Euler(new
 			                                  Vector3(0,rotation,0));
-			gameObject.rigidbody.MoveRotation(rot);
+			gameObject.GetComponent<Rigidbody>().MoveRotation(rot);
 			//gameObject.transform.Rotate(0, -2.0f, 0.0f );
 		}
 	}
@@ -133,7 +133,7 @@ through the FixedUpdate() method, not the Update() method
 			Camera.main.WorldToScreenPoint(new Vector3(0,0,0));
 
 		cameraBottomLeft = Camera.main.ScreenToWorldPoint(new Vector3 (0, 0, originInScreenCoords.z));
-		cameraTopRight = Camera.main.ScreenToWorldPoint(new Vector3 (Camera.main.GetScreenWidth (), Camera.main.GetScreenHeight (), originInScreenCoords.z));
+		cameraTopRight = Camera.main.ScreenToWorldPoint(new Vector3 (Screen.width, Screen.height, originInScreenCoords.z));
 
 		// Check the top wall
 		if (transform.position.z > cameraTopRight.z) {
@@ -312,7 +312,7 @@ through the FixedUpdate() method, not the Update() method
 
 		//Respawn is gonna have to have a way to keep the ship from dying right away
 		//add respawn noise
-		rigidbody.Sleep (); //This should reset the forces on the ship.
+		GetComponent<Rigidbody>().Sleep (); //This should reset the forces on the ship.
 
 		//I guess I would set position back to origin?
 		transform.position = new Vector3 (0.0f, 0.0f, 0.0f);

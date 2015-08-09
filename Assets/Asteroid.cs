@@ -21,8 +21,8 @@ public class Asteroid : MonoBehaviour {
 		forceVector.x = 200.0f;
 		Quaternion rot = Quaternion.Euler(new Vector3(0,rotation,0));
 
-		gameObject.rigidbody.MoveRotation(rot);
-		gameObject.rigidbody.AddRelativeForce(forceVector);
+		gameObject.GetComponent<Rigidbody>().MoveRotation(rot);
+		gameObject.GetComponent<Rigidbody>().AddRelativeForce(forceVector);
 
 	}
 
@@ -46,7 +46,7 @@ public class Asteroid : MonoBehaviour {
 			Camera.main.WorldToScreenPoint(new Vector3(0,0,0));
 		
 		cameraBottomLeft = Camera.main.ScreenToWorldPoint(new Vector3 (0, 0, originInScreenCoords.z));
-		cameraTopRight = Camera.main.ScreenToWorldPoint(new Vector3 (Camera.main.GetScreenWidth (), Camera.main.GetScreenHeight (), originInScreenCoords.z));
+		cameraTopRight = Camera.main.ScreenToWorldPoint(new Vector3 (Screen.width, Screen.height, originInScreenCoords.z));
 		
 		// Check the top wall
 		if (transform.position.z > cameraTopRight.z) {

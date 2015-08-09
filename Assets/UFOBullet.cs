@@ -19,12 +19,12 @@ public class UFOBullet : MonoBehaviour {
 		// travel straight in the X-axis
 		thrust.x = 400.0f;
 		// do not passively decelerate
-		gameObject.rigidbody.drag = 0;
+		gameObject.GetComponent<Rigidbody>().drag = 0;
 		// set the direction it will travel in
-		gameObject.rigidbody.MoveRotation(heading);
+		gameObject.GetComponent<Rigidbody>().MoveRotation(heading);
 		// apply thrust once, no need to apply it again since
 		// it will not decelerate
-		gameObject.rigidbody.AddRelativeForce(thrust);
+		gameObject.GetComponent<Rigidbody>().AddRelativeForce(thrust);
 	}
 	// Update is called once per frame
 	void Update () { 
@@ -49,7 +49,7 @@ public class UFOBullet : MonoBehaviour {
 			Camera.main.WorldToScreenPoint(new Vector3(0,0,0));
 		
 		cameraBottomLeft = Camera.main.ScreenToWorldPoint(new Vector3 (0, 0, originInScreenCoords.z));
-		cameraTopRight = Camera.main.ScreenToWorldPoint(new Vector3 (Camera.main.GetScreenWidth (), Camera.main.GetScreenHeight (), originInScreenCoords.z));
+		cameraTopRight = Camera.main.ScreenToWorldPoint(new Vector3 (Screen.width, Screen.height, originInScreenCoords.z));
 		
 		// Check the top wall
 		if (transform.position.z > cameraTopRight.z) {

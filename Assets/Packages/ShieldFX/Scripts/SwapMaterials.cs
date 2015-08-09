@@ -14,8 +14,8 @@ public class SwapMaterials : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Keypad1))
-			renderer.material = CheapMaterial;
+			GetComponent<Renderer>().material = CheapMaterial;
 		else if(Input.GetKeyDown(KeyCode.Keypad2))
-			renderer.material = ExpensiveMaterial;
+			GetComponent<Renderer>().material = ExpensiveMaterial;
 	}
 }
